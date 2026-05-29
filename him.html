@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>WW · LUI — Conçu pour l'homme moderne</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/lang-switcher.css">
+<style>
+  /* WW SASU Graphic Charter — Lui */
+  :root {
+    --ww-black: #0D0D0D;
+    --ww-white: #F5F5F3;
+    --ww-steel: #A8B0B8;
+    --ww-dim:   rgba(245,245,243,0.12);
+  }
+
+  body {
+    background: var(--ww-black);
+    color: var(--ww-white);
+    font-family: 'Karla', sans-serif;
+  }
+
+  /* Override shared serif */
+  .serif { font-family: 'Karla', sans-serif; font-weight: 800; letter-spacing: -0.02em; }
+
+  .nav {
+    background: rgba(13,13,13,0.85);
+    border-bottom: 1px solid var(--ww-dim);
+    backdrop-filter: blur(12px);
+  }
+  .logo-ww {
+    font-family: 'Karla', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    color: var(--ww-white);
+    text-decoration: none;
+  }
+  .logo-ww .slash { color: var(--ww-steel); font-weight: 300; margin: 0 0.3em; }
+  .nav-links a { color: rgba(245,245,243,0.6) !important; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--ww-white) !important; }
+  .nav-links a.active { color: var(--ww-white) !important; border-bottom: 1px solid var(--ww-white); padding-bottom: 2px; }
+  .nav-boutique {
+    font-family: 'Karla', sans-serif;
+    font-size: 0.65rem; font-weight: 700;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--ww-white) !important;
+    text-decoration: none;
+    border: 1px solid var(--ww-dim);
+    padding: 0.5rem 1.2rem;
+    border-radius: 2px;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .nav-boutique:hover { background: var(--ww-white); color: var(--ww-black) !important; border-color: var(--ww-white); }
+
+  /* Hero */
+  .hero {
+    background: var(--ww-black);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(135deg, rgba(168,176,184,0.04) 0%, transparent 50%),
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 79px,
+        rgba(255,255,255,0.025) 79px,
+        rgba(255,255,255,0.025) 80px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 79px,
+        rgba(255,255,255,0.025) 79px,
+        rgba(255,255,255,0.025) 80px
+      );
+    pointer-events: none;
+  }
+  .hero h1 {
+    font-family: 'Karla', sans-serif;
+    font-weight: 800;
+    font-size: clamp(3rem, 7vw, 6.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+  }
+  .hero h1 em { font-style: normal; color: var(--ww-steel); }
+  .hero-img {
+    background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80');
+    border-radius: 0;
+    filter: grayscale(20%);
+  }
+  .hero-label {
+    font-family: 'Karla', sans-serif;
+    font-size: 0.65rem; font-weight: 700;
+    letter-spacing: 0.45em; text-transform: uppercase;
+    color: var(--ww-steel); margin-bottom: 2rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .hero-label::before {
+    content: ''; display: block;
+    width: 2rem; height: 1px; background: var(--ww-steel);
+  }
+
+  /* Periodic element badge */
+  .element-badge {
+    display: inline-flex; flex-direction: column; align-items: center;
+    border: 1px solid rgba(245,245,243,0.2);
+    padding: 0.4rem 0.7rem;
+    min-width: 3.5rem;
+    font-family: 'Karla', sans-serif;
+    line-height: 1; margin-bottom: 2rem;
+  }
+  .element-badge .el-num { font-size: 0.55rem; opacity: 0.5; align-self: flex-start; }
+  .element-badge .el-sym { font-size: 1.6rem; font-weight: 800; }
+  .element-badge .el-name { font-size: 0.45rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.5; }
+
+  /* CTA button */
+  .btn-ww {
+    display: inline-flex; align-items: center; justify-content: center; gap: 1rem;
+    padding: 1.25rem 2rem;
+    background: var(--ww-white);
+    color: var(--ww-black);
+    font-family: 'Karla', sans-serif;
+    font-size: 0.85rem; font-weight: 800;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    text-decoration: none; border: none; cursor: pointer;
+    border-radius: 0; width: 100%;
+    transition: background 0.15s, transform 0.15s;
+  }
+  .btn-ww:hover { background: #d8d8d6; transform: translateY(-1px); }
+  .btn-ww:active { transform: translateY(0); }
+
+  /* Payment buttons */
+  .pay-row { display: flex; flex-direction: column; gap: 0.5rem; }
+  .pay-btn {
+    display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+    padding: 1rem 1.5rem; width: 100%;
+    font-family: 'Karla', sans-serif; font-size: 0.82rem; font-weight: 800;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    border: none; cursor: pointer; transition: opacity 0.15s, transform 0.1s;
+  }
+  .pay-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+  .pay-btn:active { transform: translateY(0); }
+  .pay-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+  .pay-btn-card  { background: #F5F5F3; color: #0D0D0D; }
+  .pay-btn-crypto { background: #0052FF; color: #fff; }
+  .pay-spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid currentColor; border-top-color: transparent; border-radius: 50%; animation: spin 0.7s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Pack card */
+  .pack-card {
+    max-width: 1100px; margin: 2px auto 0;
+    background: var(--ww-white); color: var(--ww-black);
+    padding: 2rem 2.5rem;
+    display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;
+  }
+  .pack-card .pack-info { flex: 1; min-width: 200px; }
+  .pack-card .pack-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.4em; text-transform: uppercase; opacity: 0.45; margin-bottom: 0.4rem; }
+  .pack-card .pack-name { font-size: clamp(1.2rem, 2vw, 1.6rem); font-weight: 800; text-transform: uppercase; letter-spacing: -0.02em; margin: 0 0 0.25rem; }
+  .pack-card .pack-desc { font-size: 0.82rem; opacity: 0.55; }
+  .pack-pricing { display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+  .pack-price { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.02em; }
+  .pack-per { font-size: 0.75rem; font-weight: 700; opacity: 0.5; letter-spacing: 0.1em; text-transform: uppercase; }
+  .pack-saving { font-size: 0.65rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; background: var(--ww-black); color: var(--ww-white); padding: 0.2rem 0.6rem; }
+  .pack-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 1.25rem 2.5rem;
+    background: var(--ww-black); color: var(--ww-white);
+    font-family: 'Karla', sans-serif; font-size: 0.85rem; font-weight: 800;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    border: none; cursor: pointer; white-space: nowrap;
+    transition: background 0.15s, transform 0.15s;
+  }
+  .pack-btn:hover { background: #222; transform: translateY(-1px); }
+  .pack-btn:active { transform: translateY(0); }
+  .btn-ww-outline {
+    background: transparent;
+    color: var(--ww-white);
+    border: 1px solid rgba(245,245,243,0.3);
+  }
+  .btn-ww-outline:hover { background: var(--ww-white); color: var(--ww-black); border-color: var(--ww-white); }
+
+  /* Marquee */
+  .marquee {
+    background: var(--ww-white);
+    border: none;
+    color: var(--ww-black);
+  }
+  .marquee-track {
+    font-family: 'Karla', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.35em;
+  }
+
+  /* Sticky buy bar */
+  .sticky-bar {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+    background: var(--ww-white); color: var(--ww-black);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.9rem 2rem; gap: 1rem;
+    box-shadow: 0 -4px 24px rgba(0,0,0,0.4);
+    transform: translateY(100%); transition: transform 0.35s cubic-bezier(.4,0,.2,1);
+  }
+  .sticky-bar.visible { transform: translateY(0); }
+  .sticky-bar-products { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; }
+  .sticky-bar-item { display: flex; align-items: center; gap: 0.75rem; }
+  .sticky-bar-item img { width: 36px; height: 36px; object-fit: contain; mix-blend-mode: multiply; background: #f0f0ee; }
+  .sticky-bar-item .sb-name { font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  .sticky-bar-item .sb-price { font-weight: 800; font-size: 0.85rem; }
+  .btn-ww-dark {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.8rem 1.8rem;
+    background: var(--ww-black); color: var(--ww-white);
+    font-family: 'Karla', sans-serif; font-size: 0.65rem; font-weight: 800;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    border: none; cursor: pointer; white-space: nowrap;
+    transition: background 0.2s;
+  }
+  .btn-ww-dark:hover { background: #333; }
+
+  /* Products grid */
+  #products { background: var(--ww-black); padding: 0; }
+  .products-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px;
+    min-height: 80vh;
+  }
+  @media (max-width: 900px) { .products-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .products-grid { grid-template-columns: 1fr; } }
+
+  /* Brand intro column */
+  .brand-col {
+    background-color: var(--ww-black);
+    background-image:
+      linear-gradient(to bottom, rgba(13,13,13,0.78) 0%, rgba(13,13,13,0.88) 100%),
+      url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80');
+    background-size: cover;
+    background-position: center top;
+    padding: 3rem 2rem;
+    display: flex; flex-direction: column; justify-content: space-between;
+    border-right: 1px solid var(--ww-dim);
+  }
+  @media (max-width: 900px) { .brand-col { grid-column: 1 / -1; border-right: none; border-bottom: 1px solid var(--ww-dim); padding: 2.5rem 2rem; } }
+  .product-card {
+    background: #111;
+    padding: 2rem;
+    display: flex; flex-direction: column; gap: 1.25rem;
+    position: relative;
+  }
+  .product-card:first-child { background: #0D0D0D; }
+  .urgency-badge {
+    position: absolute; top: 1rem; right: 1rem;
+    background: var(--ww-white); color: var(--ww-black);
+    font-size: 0.55rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+  }
+  .stars { color: var(--ww-white); font-size: 0.9rem; letter-spacing: 0.05em; opacity: 0.9; }
+  .trust-row {
+    display: flex; gap: 1rem; flex-wrap: wrap; padding-top: 0.75rem;
+    border-top: 1px solid var(--ww-dim);
+  }
+  .trust-item { font-size: 0.78rem; opacity: 0.5; letter-spacing: 0.03em; }
+  .product-img {
+    background-color: #0D0D0D;
+    aspect-ratio: 1;
+    overflow: hidden;
+    position: relative;
+  }
+  .product-card:first-of-type .product-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 30%, #0D0D0D 75%);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .gallery-main {
+    width: 100%; height: 100%;
+    object-fit: contain;
+    display: block;
+    mix-blend-mode: screen;
+    transition: opacity 0.3s;
+  }
+  .gallery-thumbs {
+    display: flex; gap: 0.4rem; margin-top: 0.5rem;
+    background: #0D0D0D; padding: 0.35rem;
+  }
+  .gallery-thumb {
+    width: 52px; height: 52px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 1px solid transparent;
+    opacity: 0.45;
+    transition: opacity 0.2s, border-color 0.2s;
+    mix-blend-mode: screen;
+    background: #0D0D0D;
+  }
+  .gallery-thumb.active, .gallery-thumb:hover { opacity: 1; border-color: #999; }
+  .product-label {
+    font-size: 0.7rem; font-weight: 700;
+    letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--ww-steel);
+  }
+  .product-name {
+    font-weight: 800;
+    font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+    letter-spacing: -0.02em; text-transform: uppercase;
+    margin: 0; line-height: 1.1;
+  }
+  .product-desc { opacity: 0.65; line-height: 1.75; font-size: 1rem; margin: 0; }
+  .price-ww {
+    font-weight: 800;
+    font-size: 2rem;
+    color: var(--ww-white);
+    letter-spacing: -0.02em;
+  }
+  .price-note { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.4; margin-left: 0.5rem; }
+
+  /* Offer options */
+  .offer-options { display: flex; flex-direction: column; gap: 0.5rem; }
+  .offer-opt {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--ww-dim);
+    cursor: pointer; transition: border-color 0.15s, background 0.15s;
+    font-family: 'Karla', sans-serif;
+    gap: 1rem;
+  }
+  .offer-opt:hover { border-color: var(--ww-steel); }
+  .offer-opt.selected { border-color: var(--ww-white); background: rgba(245,245,243,0.07); }
+  .offer-opt .opt-left { display: flex; align-items: center; gap: 0.75rem; }
+  .offer-opt .opt-dot {
+    width: 14px; height: 14px; border-radius: 50%;
+    border: 1.5px solid var(--ww-steel); flex-shrink: 0;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .offer-opt.selected .opt-dot { background: var(--ww-white); border-color: var(--ww-white); }
+  .offer-opt .opt-label { font-size: 0.9rem; font-weight: 700; }
+  .offer-opt .opt-sub { font-size: 0.7rem; opacity: 0.45; font-weight: 400; margin-left: 0.25rem; }
+  .offer-opt .opt-price { font-size: 1rem; font-weight: 800; white-space: nowrap; }
+  .offer-opt .opt-badge {
+    font-size: 0.55rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase;
+    background: var(--ww-white); color: var(--ww-black); padding: 0.15rem 0.5rem; margin-left: 0.5rem;
+  }
+
+  /* Qty selector */
+  .qty-selector {
+    display: inline-flex; align-items: center;
+    border: 1px solid var(--ww-dim);
+    overflow: hidden;
+  }
+  .qty-btn {
+    background: transparent; border: none; color: var(--ww-white);
+    width: 36px; height: 36px; font-size: 1.1rem;
+    cursor: pointer; transition: background 0.2s;
+    font-family: 'Karla', sans-serif;
+  }
+  .qty-btn:hover { background: rgba(245,245,243,0.08); }
+  .qty-input {
+    background: transparent; border: none;
+    color: var(--ww-white); width: 40px; height: 36px;
+    text-align: center; font-family: 'Karla', sans-serif;
+    font-size: 0.9rem; font-weight: 700; outline: none;
+    -moz-appearance: textfield; appearance: textfield;
+  }
+  .qty-input::-webkit-outer-spin-button, .qty-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+  /* Salons section */
+  #salons { background: #0D0D0D; border-top: 1px solid var(--ww-dim); padding: 5rem 2rem; }
+  .salons-grid {
+    max-width: 1100px; margin: 3rem auto 0;
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 2px;
+  }
+  @media (max-width: 700px) { .salons-grid { grid-template-columns: 1fr; } }
+  .salon-card {
+    background: #111; padding: 2rem 1.5rem;
+    border-left: 1px solid var(--ww-dim);
+  }
+  .salon-card:first-child { border-left: none; }
+  .salon-card h4 { font-weight: 800; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 0.5rem; }
+  .salon-card p { font-size: 0.8rem; opacity: 0.5; line-height: 1.6; margin: 0 0 1.25rem; }
+  .salon-tag {
+    display: inline-block;
+    font-size: 0.55rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase;
+    border: 1px solid var(--ww-dim); padding: 0.2rem 0.6rem; color: var(--ww-steel);
+  }
+
+  /* Science section */
+  #science { background: #111; border-top: 1px solid var(--ww-dim); }
+  .science-title {
+    font-family: 'Karla', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 4.5vw, 4rem);
+    letter-spacing: -0.03em; text-transform: uppercase;
+    line-height: 1; margin: 0 0 3rem;
+  }
+  .science-title em { font-style: normal; color: var(--ww-steel); }
+
+  /* Feature cards — periodic table style */
+  .features { gap: 0; border-top: 1px solid var(--ww-dim); }
+  .feature {
+    border-top: none !important;
+    border-right: 1px solid var(--ww-dim);
+    padding: 2rem 1.5rem;
+    position: relative;
+  }
+  .feature:last-child { border-right: none; }
+  .feature .el-atom {
+    font-family: 'Karla', sans-serif;
+    font-size: 0.55rem; letter-spacing: 0.1em;
+    text-transform: uppercase; opacity: 0.35;
+    margin-bottom: 0.25rem;
+  }
+  .feature .num {
+    font-family: 'Karla', sans-serif;
+    font-size: 2rem; font-weight: 800;
+    font-style: normal;
+    opacity: 0.15; line-height: 1;
+    margin-bottom: 1rem; color: var(--ww-white);
+  }
+  .feature h4 {
+    font-family: 'Karla', sans-serif;
+    font-weight: 700; font-size: 0.9rem;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    margin: 0 0 0.5rem;
+  }
+  .feature p { font-size: 0.8rem; opacity: 0.55; line-height: 1.6; font-family: 'Karla', sans-serif; }
+
+  /* Switch banner */
+  .switch-banner { border-top: 1px solid var(--ww-dim); background: var(--ww-black); }
+  .switch-banner a {
+    font-family: 'Karla', sans-serif;
+    font-style: normal; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    border-bottom: 1px solid currentColor;
+  }
+
+  /* Footer */
+  footer .brand-foot {
+    font-family: 'Karla', sans-serif;
+    font-weight: 800; font-size: 1rem;
+    letter-spacing: 0.06em; color: var(--ww-white);
+  }
+
+  /* Section label override */
+  .section-label { font-family: 'Karla', sans-serif; font-weight: 700; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="logo-ww">WW<span class="slash">/</span>LUI</a>
+  <div class="nav-links">
+    <a href="#products">Produits</a>
+    <a href="contact.html">Contact Pro</a>
+    <a href="her.html">Elle</a>
+  </div>
+  <span data-lang-switch data-current="fr" data-fr="him.html" data-en="en/him.html"></span>
+  <a href="#products" class="nav-boutique">Commander →</a>
+</nav>
+
+<!-- Products -->
+<section id="products">
+  <div class="products-grid">
+
+    <!-- Brand intro -->
+    <div class="brand-col">
+      <div>
+        <div class="hero-label">Pour Lui · Cire coiffante</div>
+        <img src="https://manandshaving.nl/cdn/shop/collections/shiner-gold-125340.png?v=1712931552"
+          alt="Shiner Gold"
+          style="width:120px; object-fit:contain; mix-blend-mode:multiply; background:#f0f0ee; padding:0.5rem; margin-bottom:1.5rem; display:block;" />
+        <div class="element-badge" title="Tungstène — W — Pureté 99.1%" style="margin-bottom:2rem;">
+          <span class="el-num">74</span>
+          <span class="el-sym">W</span>
+          <span class="el-name">Tungsten</span>
+        </div>
+        <h1 style="font-family:'Karla',sans-serif; font-weight:800; font-size:clamp(2.2rem,4vw,4rem); line-height:0.95; letter-spacing:-0.03em; text-transform:uppercase; margin:0 0 1.5rem;">
+          Conçu<br/>pour<br/>l’homme<br/><em style="font-style:normal; color:var(--ww-steel);">moderne.</em>
+        </h1>
+        <p style="font-family:'Karla',sans-serif; font-size:0.6rem; font-weight:700; letter-spacing:0.35em; text-transform:uppercase; color:var(--ww-steel); margin:1.5rem 0 0.75rem;">Shiner Gold — La Cire Signature</p>
+        <p style="font-family:'Karla',sans-serif; opacity:0.65; font-size:0.88rem; line-height:1.8; margin:0 0 0.9rem;">Sélectionnée par l’équipe Walter White après plus de 15 ans passés derrière le fauteuil de barbier, Shiner Gold est bien plus qu’une cire : c’est le résultat d’une expertise terrain et d’une exigence sans compromis.</p>
+        <p style="font-family:'Karla',sans-serif; opacity:0.65; font-size:0.88rem; line-height:1.8; margin:0 0 0.9rem;">À base d’eau, elle s’élimine facilement sans alourdir ni étouffer le cheveu — votre cuir chevelu respire, votre coiffure tient.</p>
+        <p style="font-family:'Karla',sans-serif; opacity:0.65; font-size:0.88rem; line-height:1.8; margin:0 0 0.9rem;">Sur <strong>cheveux humides</strong>, elle libère un effet souple et ondulé, naturel et vivant. Sur <strong>cheveux secs</strong>, elle sculpte une coupe d’une précision absolue — structurée, brillante, maîtrisée.</p>
+        <p style="font-family:'Karla',sans-serif; opacity:0.4; font-size:0.8rem; line-height:1.75; margin:0; border-left:2px solid var(--ww-dim); padding-left:0.75rem;">Le style des gentlemen des années 50, revisité pour l’homme d’aujourd’hui — <em>effet wet &amp; brillant</em> pour la Heavy Classic, <em>naturel &amp; mat</em> pour la Pomade Clay.</p>
+      </div>
+      <div style="margin-top:2rem; font-family:'Karla',sans-serif; font-size:0.65rem; letter-spacing:0.3em; text-transform:uppercase; opacity:0.3; border-top:1px solid var(--ww-dim); padding-top:1.5rem;">
+        WW COSMÉTIQUES · PETITES SÉRIES · SUISSE
+      </div>
+    </div>
+
+    <!-- Carte 1 -->
+    <div class="product-card">
+      <div class="product-img">
+        <img id="galleryMain1" class="gallery-main"
+          src="https://robbieschopshop.com.au/wp-content/uploads/2017/07/shiner-gold-clay-maximum-matte-rcs.jpg"
+          alt="Shiner Gold Pomade Clay" />
+      </div>
+      <div class="gallery-thumbs">
+        <img class="gallery-thumb active"
+          src="https://robbieschopshop.com.au/wp-content/uploads/2017/07/shiner-gold-clay-maximum-matte-rcs.jpg"
+          alt="Vue 1" onclick="switchImg(this,1)" />
+        <img class="gallery-thumb"
+          src="https://www.hairpomades.com/web/image/product.image/1386/image_1024/Shiner%20Gold%20Clay%20Pomade?unique=904b61c"
+          alt="Vue 2" onclick="switchImg(this,1)" />
+        <img class="gallery-thumb"
+          src="https://shinergold.com/wp-content/uploads/2018/11/E5F6C009-E125-41F7-A759-0B46FBA79C73.jpeg"
+          alt="Vue 3" onclick="switchImg(this,1)" />
+      </div>
+      <span class="urgency-badge">⚡ Stock limité</span>
+      <p class="product-label">Clay · 113 g</p>
+      <h2 class="product-name">Shiner Gold<br/>Pomade Clay</h2>
+      <div class="stars">★★★★★ <span style="opacity:0.45; font-size:0.8rem;">4.9 · 200+ barbiers</span></div>
+      <p class="product-desc">Tenue forte, finition mate. Base aqueuse — sculpt sans résidu.</p>
+      <div class="offer-options" id="offers1">
+        <div class="offer-opt selected" onclick="selectOffer(1,0)">
+          <div class="opt-left">
+            <div class="opt-dot"></div>
+            <span class="opt-label">1 cire<span class="opt-sub">· unité</span></span>
+          </div>
+          <span class="opt-price">28 CHF</span>
+        </div>
+        <div class="offer-opt" onclick="selectOffer(1,1)">
+          <div class="opt-left">
+            <div class="opt-dot"></div>
+            <span class="opt-label">Pack 3 cires<span class="opt-sub">· 20 CHF/pièce</span></span>
+            <span class="opt-badge">-8 CHF</span>
+          </div>
+          <span class="opt-price">60 CHF</span>
+        </div>
+        <div class="offer-opt" onclick="selectOffer(1,2)">
+          <div class="opt-left">
+            <div class="opt-dot"></div>
+            <span class="opt-label">Volume Pro — 6 cires<span class="opt-sub">· tarif professionnel</span></span>
+            <span class="opt-badge">Pro</span>
+          </div>
+          <span class="opt-price" style="opacity:0.45; font-size:0.8rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;">Sur devis</span>
+        </div>
+      </div>
+      <div class="pay-row" id="payRow1">
+        <button class="pay-btn pay-btn-card" onclick="payByCard(1,'Shiner Gold Pomade Clay')"><span id="labelCard1">Payer par carte / TWINT</span></button>
+        <button class="pay-btn pay-btn-crypto" onclick="payByCrypto(1,'Shiner Gold Pomade Clay')"><span id="labelCrypto1">Payer en crypto</span></button>
+      </div>
+      <div class="trust-row">
+        <span class="trust-item">✓ Livraison 2–3 j</span>
+        <span class="trust-item">✓ Retours 30 j</span>
+        <span class="trust-item">✓ Paiement sécurisé</span>
+      </div>
+    </div>
+
+    <!-- Carte 2 -->
+    <div class="product-card">
+      <div class="product-img">
+        <img id="galleryMain2" class="gallery-main"
+          src="https://shinergold.com/wp-content/uploads/2018/11/shiner-gold-pomade-accessories.png"
+          alt="Shiner Gold Heavy Classic" />
+      </div>
+      <div class="gallery-thumbs">
+        <img class="gallery-thumb active"
+          src="https://shinergold.com/wp-content/uploads/2018/11/shiner-gold-pomade-accessories.png"
+          alt="Vue 1" onclick="switchImg(this,2)" />
+        <img class="gallery-thumb"
+          src="https://www.hairpomades.com/web/image/product.image/519/image_1024/Shiner%20Gold%20Heavy%20Hold%20Pomade?unique=c943122"
+          alt="Vue 2" onclick="switchImg(this,2)" />
+        <img class="gallery-thumb"
+          src="https://shinergold.com/wp-content/uploads/2018/11/shiner-gold-heavy-hold-classic-pomade-600x600.jpg"
+          alt="Vue 3" onclick="switchImg(this,2)" />
+      </div>
+      <span class="urgency-badge" style="background:#F5F5F3;">Le classique</span>
+      <p class="product-label">Classic · 113 g</p>
+      <h2 class="product-name">Shiner Gold<br/>Heavy Classic</h2>
+      <div class="stars">★★★★★ <span style="opacity:0.45; font-size:0.8rem;">5.0 · La référence</span></div>
+      <p class="product-desc">Tenue extra-forte, brillance haute. La référence des barbiers.</p>
+      <div class="offer-options" id="offers2">
+        <div class="offer-opt selected" onclick="selectOffer(2,0)">
+          <div class="opt-left">
+            <div class="opt-dot"></div>
+            <span class="opt-label">1 cire<span class="opt-sub">· unité</span></span>
+          </div>
+          <span class="opt-price">22 CHF</span>
+        </div>
+        <div class="offer-opt" onclick="selectOffer(2,1)">
+          <div class="opt-left">
+            <div class="opt-dot"></div>
+            <span class="opt-label">Pack 3 cires<span class="opt-sub">· 18 CHF/pièce</span></span>
+            <span class="opt-badge">-12 CHF</span>
+          </div>
+          <span class="opt-price">54 CHF</span>
+        </div>
+        <div class="offer-opt" onclick="selectOffer(2,2)">
+          <div class="opt-left">
+            <div class="opt-dot"></div>
+            <span class="opt-label">Volume Pro — 6 cires<span class="opt-sub">· tarif professionnel</span></span>
+            <span class="opt-badge">Pro</span>
+          </div>
+          <span class="opt-price" style="opacity:0.45; font-size:0.8rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;">Sur devis</span>
+        </div>
+      </div>
+      <div class="pay-row" id="payRow2">
+        <button class="pay-btn pay-btn-card" onclick="payByCard(2,'Shiner Gold Heavy Classic')"><span id="labelCard2">Payer par carte / TWINT</span></button>
+        <button class="pay-btn pay-btn-crypto" onclick="payByCrypto(2,'Shiner Gold Heavy Classic')"><span id="labelCrypto2">Payer en crypto</span></button>
+      </div>
+      <div class="trust-row">
+        <span class="trust-item">✓ Livraison 2–3 j</span>
+        <span class="trust-item">✓ Retours 30 j</span>
+        <span class="trust-item">✓ Paiement sécurisé</span>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- Footer -->
+<footer style="background:#0D0D0D; border-top: 1px solid var(--ww-dim);">
+  <div class="container" style="color:rgba(245,245,243,0.4);">
+    <div>
+      <span class="brand-foot">WW</span><br/>
+      <span style="font-family:'Karla',sans-serif; font-size:0.75rem; letter-spacing:0.1em;">La science de la beauté.</span>
+    </div>
+    <div style="font-family:'Karla',sans-serif; font-size:0.8rem; line-height:2.2;">
+      <a href="story.html" style="color:rgba(245,245,243,0.4); display:block;">Notre Histoire</a>
+      <a href="contact.html" style="color:rgba(245,245,243,0.4); display:block;">Contact</a>
+      <a href="#" style="color:rgba(245,245,243,0.4); display:block;">Livraison & Retours</a>
+    </div>
+    <div style="font-family:'Karla',sans-serif; font-size:0.75rem;">© 2026 WW Cosmétiques. Fabriqué en petites séries.</div>
+  </div>
+</footer>
+
+<!-- Sticky buy bar -->
+<div class="sticky-bar" id="stickyBar">
+  <div class="sticky-bar-products">
+    <div class="sticky-bar-item">
+      <img src="https://www.hairpomades.com/web/image/product.product/10583/image_1024/%5BSHI-021-2%5D%20Shiner%20Gold%20Pomade%20Clay%20%28Large%29?unique=ce0912b" alt="Clay" />
+      <div>
+        <div class="sb-name">Pomade Clay</div>
+        <div class="sb-price">28 CHF</div>
+      </div>
+    </div>
+    <div class="sticky-bar-item">
+      <img src="https://shinergold.com/wp-content/uploads/2018/11/shiner-gold-heavy-hold-classic-pomade-600x600.jpg" alt="Classic" />
+      <div>
+        <div class="sb-name">Heavy Classic</div>
+        <div class="sb-price">22 CHF</div>
+      </div>
+    </div>
+    <span style="font-size:0.7rem; font-weight:700; color:#666;">Les deux pour <strong>50 CHF</strong> — économisez 5 CHF</span>
+  </div>
+  <button class="btn-ww-dark" onclick="addBundle()">Commander les 2 → 50 CHF</button>
+</div>
+
+<script src="assets/lang-switcher.js"></script>
+<script>
+  const selectedOffer = { 1: 0, 2: 0 };
+  const OFFER_PRICES = {
+    1: [28, 60, 90],
+    2: [22, 54, 84]
+  };
+  const OFFER_QTY = ['1 cire', 'Pack 3 cires', 'Volume Pro 6 cires'];
+  const CART_LABELS = ['Ajouter au panier →', 'Commander le Pack 3 →', 'Commander Volume Pro →'];
+
+  function switchImg(thumb, id) {
+    document.getElementById('galleryMain' + id).src = thumb.src;
+    thumb.closest('.gallery-thumbs').querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
+    thumb.classList.add('active');
+  }
+
+  function selectOffer(productId, optionIndex) {
+    selectedOffer[productId] = optionIndex;
+    document.querySelectorAll('#offers' + productId + ' .offer-opt')
+      .forEach((el, i) => el.classList.toggle('selected', i === optionIndex));
+    const lbl = document.getElementById('cartLabel' + productId);
+    if (lbl) lbl.textContent = CART_LABELS[optionIndex];
+  }
+
+  const API_BASE = 'http://localhost:3002';
+
+  function getProductData(productId, name) {
+    const idx = selectedOffer[productId];
+    if (idx === 2) { window.location.href = 'contact.html'; return null; }
+    return {
+      name: `${OFFER_QTY[idx]} — ${name}`,
+      price: OFFER_PRICES[productId][idx],
+      image: document.getElementById('galleryMain' + productId)?.src || ''
+    };
+  }
+
+  function setLoading(productId, method, loading) {
+    const el = document.getElementById(`label${method}${productId}`);
+    const btn = el?.closest('button');
+    if (!el || !btn) return;
+    btn.disabled = loading;
+    el.innerHTML = loading ? '<span class="pay-spinner"></span>' : (
+      method === 'Card' ? 'Payer par carte / TWINT' :
+      method === 'Paypal' ? 'Payer avec PayPal' : 'Payer en crypto'
+    );
+  }
+
+  async function payByCard(productId, name) {
+    const data = getProductData(productId, name);
+    if (!data) return;
+    setLoading(productId, 'Card', true);
+    try {
+      const res = await fetch(`${API_BASE}/api/checkout`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const json = await res.json();
+      if (json.url) window.location.href = json.url;
+      else throw new Error(json.error || 'Erreur inconnue');
+    } catch (e) {
+      alert(`Erreur paiement carte : ${e.message}`);
+      setLoading(productId, 'Card', false);
+    }
+  }
+
+  async function payByCrypto(productId, name) {
+    const data = getProductData(productId, name);
+    if (!data) return;
+    setLoading(productId, 'Crypto', true);
+    try {
+      const res = await fetch(`${API_BASE}/api/crypto-checkout`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const json = await res.json();
+      if (json.url) window.location.href = json.url;
+      else throw new Error(json.error || 'Erreur inconnue');
+    } catch (e) {
+      alert(`Erreur crypto : ${e.message}`);
+      setLoading(productId, 'Crypto', false);
+    }
+  }
+
+  function addBundle() {
+    payByCard('bundle', 'Pack WW Clay + Heavy Classic');
+  }
+
+  const stickyBar = document.getElementById('stickyBar');
+  const productsSection = document.getElementById('products');
+  const observer = new IntersectionObserver(
+    ([entry]) => stickyBar.classList.toggle('visible', !entry.isIntersecting),
+    { threshold: 0.1 }
+  );
+  observer.observe(productsSection);
+</script>
+</body>
+</html>

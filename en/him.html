@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>WW · HIM — Engineered for the modern man</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/styles.css">
+<link rel="stylesheet" href="../assets/lang-switcher.css">
+<style>
+  body { background: #0A0A0A; color: #F4F1EC; }
+  .nav { background: rgba(10,10,10,0.7); border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .accent { color: var(--gold); }
+  .btn-primary { background: var(--gold); border-color: var(--gold); color: #000; }
+  .btn-primary:hover { background: transparent; color: var(--gold); }
+  .hero { background: radial-gradient(ellipse at 80% 20%, rgba(200,162,75,0.08), transparent 60%); }
+  .hero-img { background-image: url('https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=1200&q=80'); }
+  .product-img { background-image: url('https://images.unsplash.com/photo-1626015449261-f4cc1c9b32f0?w=1000&q=80'); background-color: #1a1a1a; }
+  .feature { border-color: rgba(255,255,255,0.15); }
+  .qty-selector { display: inline-flex; align-items: center; border: 1px solid rgba(255,255,255,0.2); border-radius: 999px; overflow: hidden; }
+  .qty-btn { background: transparent; border: none; color: #F4F1EC; width: 42px; height: 42px; font-size: 1.25rem; cursor: pointer; transition: background 0.2s ease; }
+  .qty-btn:hover { background: rgba(200,162,75,0.15); color: var(--gold); }
+  #qty { background: transparent; border: none; color: var(--gold); width: 50px; height: 42px; text-align: center; font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 600; outline: none; -moz-appearance: textfield; appearance: textfield; }
+  #qty::-webkit-outer-spin-button, #qty::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="logo" style="color:#F4F1EC;">WW · <span class="accent">HIM</span></a>
+  <div class="nav-links">
+    <a href="#product" style="color:#F4F1EC;">Shiner Gold</a>
+    <a href="#science" style="color:#F4F1EC;">The Science</a>
+    <a href="story.html" style="color:#F4F1EC;">Story</a>
+  </div>
+  <span data-lang-switch data-current="en" data-fr="../him.html" data-en="him.html"></span>
+  <a href="#product" class="text-xs" style="color:var(--gold); letter-spacing:0.25em; text-transform:uppercase;">Shop →</a>
+</nav>
+
+<section class="hero">
+  <div>
+    <p class="section-label" style="color:var(--gold);">For Him · Hair Wax</p>
+    <h1>Engineered<br/>for the<br/><em class="accent">modern man.</em></h1>
+    <p class="lead">Hair products crafted with the precision of a laboratory. No gimmicks. Just results — every day, every cut, every move.</p>
+    <a href="#product" class="btn btn-primary"><span>Discover Shiner Gold →</span></a>
+  </div>
+  <div class="hero-img"></div>
+</section>
+
+<div class="marquee" style="color: var(--gold);">
+  <div class="marquee-track">
+    <span>99.1% Pure Formula</span><span>·</span>
+    <span>Strong Hold · High Shine</span><span>·</span>
+    <span>Water-Based</span><span>·</span>
+    <span>Crafted in Small Batches</span><span>·</span>
+    <span>Tested by Barbers</span><span>·</span>
+    <span>99.1% Pure Formula</span><span>·</span>
+    <span>Strong Hold · High Shine</span><span>·</span>
+    <span>Water-Based</span><span>·</span>
+    <span>Crafted in Small Batches</span><span>·</span>
+    <span>Tested by Barbers</span><span>·</span>
+  </div>
+</div>
+
+<section id="product">
+  <div class="container product-preview">
+    <div class="img-wrap product-img"></div>
+    <div>
+      <p class="section-label" style="color:var(--gold);">Signature Product · 100ml</p>
+      <h2 class="serif" style="font-size: clamp(2rem,4vw,3rem); margin: 0 0 1rem;">Shiner Gold</h2>
+      <p style="opacity:0.75; line-height:1.6; margin-bottom: 1.5rem;">
+        The signature hold. The signature shine. A pliable, water-based wax engineered for men who don't compromise — strong enough to hold all day, soft enough to restyle anytime.
+      </p>
+      <ul style="list-style:none; padding:0; margin:0 0 2rem; font-size:0.9rem; line-height:2; opacity:0.85;">
+        <li>— Strong, pliable hold (8/10)</li>
+        <li>— High shine, never greasy</li>
+        <li>— Water-based, easy rinse</li>
+        <li>— Signature woody scent</li>
+      </ul>
+      <div style="display:flex; align-items:center; gap:2rem; margin-bottom:2rem;">
+        <span class="price accent" id="totalPrice">€29</span>
+        <span style="font-size:0.75rem; letter-spacing:0.2em; text-transform:uppercase; opacity:0.6;">Free shipping over €50</span>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:1.5rem; margin-bottom:2rem; flex-wrap:wrap;">
+        <label style="font-size:0.7rem; letter-spacing:0.3em; text-transform:uppercase; opacity:0.6;">Quantity</label>
+        <div class="qty-selector">
+          <button type="button" class="qty-btn" onclick="changeQty(-1)" aria-label="Decrease">−</button>
+          <input type="number" id="qty" value="1" min="1" max="99" onchange="updateTotal()" />
+          <button type="button" class="qty-btn" onclick="changeQty(1)" aria-label="Increase">+</button>
+        </div>
+        <span id="bundleHint" style="font-size:0.75rem; opacity:0.55; letter-spacing:0.05em;"></span>
+      </div>
+
+      <button class="btn btn-primary" onclick="addToCart()"><span id="cartLabel">Add to Cart →</span></button>
+    </div>
+  </div>
+</section>
+
+<section id="science" style="background: #111; border-top: 1px solid rgba(255,255,255,0.06);">
+  <div class="container">
+    <p class="section-label" style="color:var(--gold);">The Science</p>
+    <h2 class="section-title">Formulated like a chemist.<br/>Used like a barber.</h2>
+    <div class="features">
+      <div class="feature"><div class="num">01</div><h4>99.1% Purity</h4><p>Each batch is lab-tested for ingredient purity. No fillers, no shortcuts.</p></div>
+      <div class="feature"><div class="num">02</div><h4>Pliable Hold</h4><p>Restyle throughout the day without flaking or stiffness.</p></div>
+      <div class="feature"><div class="num">03</div><h4>Water-Based</h4><p>Rinses out cleanly with water. No residue, no buildup.</p></div>
+      <div class="feature"><div class="num">04</div><h4>Small Batches</h4><p>Hand-finished in limited batches. Numbered, dated, signed.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="switch-banner">
+  <p class="section-label" style="color: var(--rose);">Discover the other side</p>
+  <a href="her.html" style="color: var(--rose);"><em>Enter Her →</em></a>
+</div>
+
+<footer style="background:#0A0A0A;">
+  <div class="container" style="color:rgba(255,255,255,0.6);">
+    <div>
+      <strong style="color:#fff; font-family:'Playfair Display',serif;">WW Cosmétiques</strong><br/>
+      The science of beauty.
+    </div>
+    <div>
+      <a href="story.html" style="color:rgba(255,255,255,0.6); display:block;">Our Story</a>
+      <a href="contact.html" style="color:rgba(255,255,255,0.6); display:block;">Contact</a>
+      <a href="#" style="color:rgba(255,255,255,0.6); display:block;">Shipping & Returns</a>
+    </div>
+    <div>© 2026 WW Cosmétiques. Crafted in small batches.</div>
+  </div>
+</footer>
+
+<script src="../assets/lang-switcher.js"></script>
+<script>
+  const UNIT_PRICE = 29;
+  function getQty() {
+    let q = parseInt(document.getElementById('qty').value, 10);
+    if (isNaN(q) || q < 1) q = 1;
+    if (q > 99) q = 99;
+    return q;
+  }
+  function changeQty(delta) {
+    document.getElementById('qty').value = Math.min(99, Math.max(1, getQty() + delta));
+    updateTotal();
+  }
+  function updateTotal() {
+    const q = getQty();
+    document.getElementById('qty').value = q;
+    document.getElementById('totalPrice').textContent = '€' + (q * UNIT_PRICE);
+    const hint = document.getElementById('bundleHint');
+    if (q >= 3) hint.textContent = '✦ Barber pack — perfect gift';
+    else if (q === 2) hint.textContent = 'The signature duo';
+    else hint.textContent = '';
+    document.getElementById('cartLabel').textContent = q > 1 ? `Add ${q} to Cart →` : 'Add to Cart →';
+  }
+  function addToCart() {
+    const q = getQty();
+    alert(`${q} × Shiner Gold added to cart (€${q * UNIT_PRICE}) — checkout coming soon ✦`);
+  }
+</script>
+</body>
+</html>

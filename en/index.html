@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>WW Cosmétiques — The Science of Beauty</title>
+<meta name="description" content="WW Cosmétiques — Premium hair & beauty products. Crafted with the precision of a laboratory." />
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lang-switcher.css">
+<style>
+  :root {
+    --gold: #C8A24B; --rose: #D9A89C; --nude: #EADBD0; --ink: #0A0A0A; --bone: #F4F1EC;
+  }
+  html, body { height: 100%; }
+  body { font-family: 'Inter', sans-serif; background: #0A0A0A; color: #F4F1EC; margin: 0; overflow: hidden; }
+  .serif { font-family: 'Playfair Display', serif; }
+  .tracking-mega { letter-spacing: 0.35em; }
+  .split { display: grid; grid-template-columns: 1fr 1fr; height: 100vh; }
+  @media (max-width: 768px) { .split { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; } }
+  .panel { position: relative; overflow: hidden; cursor: pointer; transition: flex 0.6s ease; }
+  .panel-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 1.2s ease, filter 0.6s ease; filter: grayscale(20%) brightness(0.55); }
+  .panel:hover .panel-bg { transform: scale(1.06); filter: grayscale(0%) brightness(0.7); }
+  .him .panel-bg { background-image: linear-gradient(135deg, rgba(0,0,0,0.6), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=1600&q=80'); }
+  .her .panel-bg { background-image: linear-gradient(135deg, rgba(0,0,0,0.45), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1522335789203-aaa55b8a3b69?w=1600&q=80'); }
+  .panel-content { position: relative; z-index: 2; height: 100%; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem; }
+  .center-logo { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; pointer-events: none; mix-blend-mode: difference; }
+  .logo-mark { width: 88px; height: 88px; border: 2px solid #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-weight: 700; font-size: 28px; color: #fff; }
+  .cta-pill { display: inline-flex; align-items: center; gap: 0.75rem; padding: 0.9rem 2rem; border: 1px solid rgba(255,255,255,0.6); border-radius: 999px; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: #fff; transition: all 0.4s ease; backdrop-filter: blur(4px); }
+  .him:hover .cta-pill { background: var(--gold); border-color: var(--gold); color: #000; }
+  .her:hover .cta-pill { background: var(--rose); border-color: var(--rose); color: #000; }
+  .arrow { display: inline-block; transition: transform 0.4s ease; }
+  .panel:hover .arrow { transform: translateX(6px); }
+  .footer-bar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 20; display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.6); pointer-events: none; }
+  .top-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 20; display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 2rem; pointer-events: none; }
+  .top-bar a { pointer-events: auto; }
+  .loader { position: fixed; inset: 0; background: #0A0A0A; z-index: 100; display: flex; align-items: center; justify-content: center; animation: fadeOut 0.8s ease 1.4s forwards; }
+  @keyframes fadeOut { to { opacity: 0; visibility: hidden; } }
+  .loader-mark { font-family: 'Playfair Display', serif; font-size: 3rem; color: #C8A24B; animation: pulse 1.4s ease infinite; }
+  @keyframes pulse { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
+</style>
+</head>
+<body>
+
+<div class="loader"><div class="loader-mark">WW</div></div>
+
+<div class="top-bar">
+  <a href="story.html" class="text-xs tracking-[0.3em] uppercase text-white/70 hover:text-white">Our Story</a>
+  <span data-lang-switch data-current="en" data-fr="../index.html" data-en="index.html"></span>
+  <a href="contact.html" class="text-xs tracking-[0.3em] uppercase text-white/70 hover:text-white">Contact</a>
+</div>
+
+<div class="center-logo"><div class="logo-mark">WW</div></div>
+
+<main class="split">
+  <a href="him.html" class="panel him">
+    <div class="panel-bg"></div>
+    <div class="panel-content">
+      <p class="text-xs tracking-mega uppercase text-white/70 mb-4">For Him · Barber</p>
+      <h1 class="serif text-5xl md:text-7xl font-semibold mb-6">Sharp.<br/>Clean.<br/><em class="text-[color:var(--gold)]">Engineered.</em></h1>
+      <p class="text-sm text-white/70 max-w-xs mb-8">Hair products crafted with the precision of a laboratory.</p>
+      <span class="cta-pill">Enter Him <span class="arrow">→</span></span>
+    </div>
+  </a>
+  <a href="her.html" class="panel her">
+    <div class="panel-bg"></div>
+    <div class="panel-content">
+      <p class="text-xs tracking-mega uppercase text-white/70 mb-4">For Her · Cosmetics</p>
+      <h1 class="serif text-5xl md:text-7xl font-semibold mb-6">Bold.<br/>Pure.<br/><em class="text-[color:var(--rose)]">Magnetic.</em></h1>
+      <p class="text-sm text-white/70 max-w-xs mb-8">High-performance cosmetics, formulated like couture.</p>
+      <span class="cta-pill">Enter Her <span class="arrow">→</span></span>
+    </div>
+  </a>
+</main>
+
+<div class="footer-bar">
+  <span>WW Cosmétiques · The Science of Beauty</span>
+  <span class="hidden md:inline">© 2026 — Crafted in small batches</span>
+</div>
+
+<script src="../assets/lang-switcher.js"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>WW Cosmétiques · Notre Histoire</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/lang-switcher.css">
+<style>
+  body { background: #0A0A0A; color: #F4F1EC; }
+  .nav { background: rgba(10,10,10,0.7); border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .nav a { color: #F4F1EC; }
+  .story-hero {
+    min-height: 60vh; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; text-align: center;
+    padding: 6rem 2rem 4rem;
+    background: radial-gradient(ellipse at center, rgba(200,162,75,0.08), transparent 60%);
+  }
+  .story-body { max-width: 720px; margin: 0 auto; padding: 2rem 2rem 6rem; font-size: 1.05rem; line-height: 1.8; opacity: 0.85; }
+  .story-body p { margin-bottom: 1.5rem; }
+  .story-body em { color: #C8A24B; font-style: italic; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="logo" style="font-family:'Playfair Display',serif;">WW</a>
+  <div class="nav-links">
+    <a href="him.html">Lui</a>
+    <a href="her.html">Elle</a>
+    <a href="story.html" style="opacity:0.6;">Histoire</a>
+  </div>
+  <span data-lang-switch data-current="fr" data-fr="story.html" data-en="en/story.html"></span>
+  <a href="contact.html" style="font-size:0.75rem; letter-spacing:0.25em; text-transform:uppercase;">Contact</a>
+</nav>
+
+<section class="story-hero">
+  <p class="section-label" style="color:#C8A24B;">Notre Histoire</p>
+  <h1 class="serif" style="font-size: clamp(2.5rem, 6vw, 5rem); margin: 0; font-weight: 600; max-width: 900px;">
+    Deux <em style="color:#C8A24B;">univers</em>.<br/>Une <em style="color:#D9A89C;">obsession</em> : <span style="font-style:italic;">la pureté</span>.
+  </h1>
+</section>
+
+<div class="story-body">
+  <p><em>WW Cosmétiques</em> est né d'une idée simple : la beauté mérite la même rigueur qu'une science.</p>
+  <p>La plupart des marques vendent des promesses. Nous avons choisi de vendre des formules — fabriquées en petites séries, testées en laboratoire, impitoyablement pures. <em>99,1 %</em> n'est pas un argument marketing. C'est le seuil en-dessous duquel nous refusons de descendre.</p>
+  <p>Nous avons divisé notre monde en deux. <strong style="color:#C8A24B;">LUI</strong>, pour l'homme moderne qui veut des outils qui performent. <strong style="color:#D9A89C;">ELLE</strong>, pour la femme qui trace sa propre ligne. Même laboratoire. Même exigence. Rituels différents.</p>
+  <p>Nous lançons avec deux produits — un par univers — parce que nous préférons perfectionner une chose plutôt que d'en vendre dix. Quand on trouve une formule qui fonctionne, le reste n'est que du bruit.</p>
+  <p style="font-family:'Playfair Display',serif; font-style:italic; font-size:1.5rem; text-align:center; padding-top: 2rem; opacity: 1; color: #fff;">
+    « La science de la beauté. »
+  </p>
+</div>
+
+<footer style="border-top: 1px solid rgba(255,255,255,0.1); padding: 3rem 2rem; font-size:0.8rem; color:rgba(255,255,255,0.6);">
+  <div class="container">
+    <div>© 2026 WW Cosmétiques. Fabriqué en petites séries.</div>
+  </div>
+</footer>
+
+<script src="assets/lang-switcher.js"></script>
+</body>
+</html>

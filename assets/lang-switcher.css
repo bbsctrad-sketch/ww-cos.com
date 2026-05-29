@@ -1,0 +1,38 @@
+/* Language switcher (flags) */
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 0.4rem 0.6rem;
+  border-radius: 999px;
+  pointer-events: auto;
+}
+.lang-switch.light {
+  background: rgba(255,255,255,0.6);
+  border-color: rgba(0,0,0,0.1);
+}
+.lang-switch a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  overflow: hidden;
+  opacity: 0.45;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  text-decoration: none;
+}
+.lang-switch a:hover { opacity: 1; transform: scale(1.08); }
+.lang-switch a.active { opacity: 1; outline: 2px solid currentColor; outline-offset: 2px; }
+.lang-switch svg { width: 100%; height: 100%; display: block; }
+
+/* Fixed position variant for splash */
+.lang-switch-fixed {
+  position: fixed;
+  top: 1rem; right: 50%;
+  transform: translateX(50%);
+  z-index: 30;
+}

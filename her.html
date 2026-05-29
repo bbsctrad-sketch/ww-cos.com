@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>WW · ELLE — Traits audacieux. Science pure.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/lang-switcher.css">
+<style>
+  body { background: #F4F1EC; color: #0A0A0A; }
+  .nav { background: rgba(244,241,236,0.85); border-bottom: 1px solid rgba(0,0,0,0.06); }
+  .nav a, .nav .logo { color: #0A0A0A !important; }
+  .accent { color: #B8806E; }
+  .accent-bg { background: var(--rose); }
+  .btn-primary { background: #0A0A0A; border-color: #0A0A0A; color: #fff; }
+  .btn-primary span { color: #fff; }
+  .btn-primary:hover { background: transparent; }
+  .btn-primary:hover span { color: #0A0A0A; }
+  .hero { background: linear-gradient(135deg, #F4F1EC 0%, #EADBD0 100%); }
+  .hero-img { background-image: url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=1200&q=80'); }
+  .product-img { background-image: url('https://images.unsplash.com/photo-1631214540242-3cd8c4b0b3b8?w=1000&q=80'); background-color: #EADBD0; }
+  .feature { border-color: rgba(0,0,0,0.15); }
+  .marquee { color: #0A0A0A; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="logo">WW · <span class="accent">ELLE</span></a>
+  <div class="nav-links">
+    <a href="#product">Pure Line</a>
+    <a href="#science">La Formule</a>
+    <a href="story.html">Histoire</a>
+  </div>
+  <span data-lang-switch data-current="fr" data-variant="light" data-fr="her.html" data-en="en/her.html"></span>
+  <a href="#product" class="text-xs" style="color:#0A0A0A; letter-spacing:0.25em; text-transform:uppercase; font-weight:500;">Boutique →</a>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div>
+    <p class="section-label accent">Pour Elle · Eye-liner liquide</p>
+    <h1>Traits audacieux.<br/>Science <em class="accent">pure</em>.</h1>
+    <p class="lead">Des cosmétiques haute performance, formulés comme de la couture. Un seul trait. Impact total.</p>
+    <a href="#product" class="btn btn-primary"><span>Découvrir Pure Line →</span></a>
+  </div>
+  <div class="hero-img"></div>
+</section>
+
+<!-- Marquee -->
+<div class="marquee" style="background:#0A0A0A; color:#EADBD0; border:none;">
+  <div class="marquee-track">
+    <span>Pigment pur à 99,1 %</span><span>·</span>
+    <span>Waterproof 24h</span><span>·</span>
+    <span>Végan & Cruelty-Free</span><span>·</span>
+    <span>Pointe feutre de précision</span><span>·</span>
+    <span>Le noir le plus pur</span><span>·</span>
+    <span>Pigment pur à 99,1 %</span><span>·</span>
+    <span>Waterproof 24h</span><span>·</span>
+    <span>Végan & Cruelty-Free</span><span>·</span>
+    <span>Pointe feutre de précision</span><span>·</span>
+    <span>Le noir le plus pur</span><span>·</span>
+  </div>
+</div>
+
+<!-- Product -->
+<section id="product">
+  <div class="container product-preview">
+    <div class="img-wrap product-img"></div>
+    <div>
+      <p class="section-label accent">Produit signature · 1,2 ml</p>
+      <h2 class="serif" style="font-size: clamp(2rem,4vw,3rem); margin: 0 0 1rem;">Pure Line</h2>
+      <p style="opacity:0.75; line-height:1.6; margin-bottom: 1.5rem;">
+        L'eye-liner liquide dans sa forme la plus pure. Ultra-pigmenté, anti-bavures, formulé pour la femme qui trace sa propre ligne — et ne la franchit jamais.
+      </p>
+      <ul style="list-style:none; padding:0; margin:0 0 2rem; font-size:0.9rem; line-height:2; opacity:0.85;">
+        <li>— Pigment pur à 99,1 %</li>
+        <li>— Waterproof 24h, anti-bavures</li>
+        <li>— Pointe feutre de précision</li>
+        <li>— Végan & cruelty-free</li>
+      </ul>
+      <div style="display:flex; align-items:center; gap:2rem; margin-bottom:2rem;">
+        <span class="price">24 €</span>
+        <span style="font-size:0.75rem; letter-spacing:0.2em; text-transform:uppercase; opacity:0.6;">Livraison offerte dès 50 €</span>
+      </div>
+      <button class="btn btn-primary" onclick="addToCart()"><span>Ajouter au panier →</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- Science -->
+<section id="science" style="background: #EADBD0;">
+  <div class="container">
+    <p class="section-label accent">La Formule</p>
+    <h2 class="section-title">La beauté,<br/><em class="accent">formulée.</em></h2>
+    <div class="features">
+      <div class="feature">
+        <div class="num">01</div>
+        <h4>Pigment pur</h4>
+        <p>Le noir le plus intense. Testé en laboratoire à chaque série.</p>
+      </div>
+      <div class="feature">
+        <div class="num">02</div>
+        <h4>Tenue 24h</h4>
+        <p>Waterproof, anti-bavures, anti-transpiration. Tracé pour durer.</p>
+      </div>
+      <div class="feature">
+        <div class="num">03</div>
+        <h4>Pointe précision</h4>
+        <p>Feutre ultra-fin, du trait discret au regard ailé le plus audacieux.</p>
+      </div>
+      <div class="feature">
+        <div class="num">04</div>
+        <h4>Clean Beauty</h4>
+        <p>Végan, cruelty-free, fabriqué en Europe. Rien à cacher.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Switch -->
+<div class="switch-banner" style="border-color: rgba(0,0,0,0.08);">
+  <p class="section-label" style="color: #C8A24B;">Découvrez l'autre univers</p>
+  <a href="him.html" style="color: #0A0A0A;"><em>Univers Lui →</em></a>
+</div>
+
+<!-- Footer -->
+<footer style="background:#0A0A0A; color:rgba(255,255,255,0.6);">
+  <div class="container">
+    <div>
+      <strong style="color:#fff; font-family:'Playfair Display',serif;">WW Cosmétiques</strong><br/>
+      La science de la beauté.
+    </div>
+    <div>
+      <a href="story.html" style="color:rgba(255,255,255,0.6); display:block;">Notre Histoire</a>
+      <a href="contact.html" style="color:rgba(255,255,255,0.6); display:block;">Contact</a>
+      <a href="#" style="color:rgba(255,255,255,0.6); display:block;">Livraison & Retours</a>
+    </div>
+    <div>© 2026 WW Cosmétiques. Fabriqué en petites séries.</div>
+  </div>
+</footer>
+
+<script src="assets/lang-switcher.js"></script>
+<script>
+  function addToCart() {
+    alert('Pure Line ajouté au panier — paiement bientôt disponible ✦');
+  }
+</script>
+</body>
+</html>
