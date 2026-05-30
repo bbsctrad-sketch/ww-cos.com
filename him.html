@@ -151,7 +151,6 @@
   .pay-btn:active { transform: translateY(0); }
   .pay-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
   .pay-btn-card  { background: #F5F5F3; color: #0D0D0D; }
-  .pay-btn-crypto { background: #0052FF; color: #fff; }
   .pay-spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid currentColor; border-top-color: transparent; border-radius: 50%; animation: spin 0.7s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
 
@@ -546,7 +545,6 @@
       </div>
       <div class="pay-row" id="payRow1">
         <button class="pay-btn pay-btn-card" onclick="payByCard(1,'Shiner Gold Pomade Clay')"><span id="labelCard1">Payer par carte / TWINT</span></button>
-        <button class="pay-btn pay-btn-crypto" onclick="payByCrypto(1,'Shiner Gold Pomade Clay')"><span id="labelCrypto1">Payer en crypto</span></button>
       </div>
       <div class="trust-row">
         <span class="trust-item">✓ Livraison 2–3 j</span>
@@ -605,7 +603,6 @@
       </div>
       <div class="pay-row" id="payRow2">
         <button class="pay-btn pay-btn-card" onclick="payByCard(2,'Shiner Gold Heavy Classic')"><span id="labelCard2">Payer par carte / TWINT</span></button>
-        <button class="pay-btn pay-btn-crypto" onclick="payByCrypto(2,'Shiner Gold Heavy Classic')"><span id="labelCrypto2">Payer en crypto</span></button>
       </div>
       <div class="trust-row">
         <span class="trust-item">✓ Livraison 2–3 j</span>
@@ -719,24 +716,6 @@
     } catch (e) {
       alert(`Erreur paiement carte : ${e.message}`);
       setLoading(productId, 'Card', false);
-    }
-  }
-
-  async function payByCrypto(productId, name) {
-    const data = getProductData(productId, name);
-    if (!data) return;
-    setLoading(productId, 'Crypto', true);
-    try {
-      const res = await fetch(`${API_BASE}/api/crypto-checkout`, {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      });
-      const json = await res.json();
-      if (json.url) window.location.href = json.url;
-      else throw new Error(json.error || 'Erreur inconnue');
-    } catch (e) {
-      alert(`Erreur crypto : ${e.message}`);
-      setLoading(productId, 'Crypto', false);
     }
   }
 

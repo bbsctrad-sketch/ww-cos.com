@@ -2,14 +2,9 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const Stripe = require('stripe');
-const CoinbaseCommerce = require('coinbase-commerce-node');
 
 const app = express();
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
-
-// Coinbase Commerce
-CoinbaseCommerce.Client.init(process.env.COINBASE_COMMERCE_API_KEY);
-const { Charge } = CoinbaseCommerce.resources;
 
 app.use(cors({ origin: process.env.SITE_URL || '*' }));
 app.use(express.json());
@@ -51,31 +46,6 @@ app.post('/api/checkout', async (req, res) => {
     res.json({ url: session.url });
   } catch (err) {
     console.error('Stripe error:', err.message);
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// ── Coinbase Commerce (crypto) ────────────────────────────────────────────────
-app.post('/api/crypto-checkout', async (req, res) => {
-  const { name, price } = req.body;
-
-  if (!name || !price) {
-    return res.status(400).json({ error: 'Paramètres manquants : name, price requis.' });
-  }
-
-  try {
-    const charge = await Charge.create({
-      name,
-      description: `Commande WW Cosmétiques — ${name}`,
-      local_price: { amount: String(price), currency: 'CHF' },
-      pricing_type: 'fixed_price',
-      redirect_url: `${SITE_URL}/merci-crypto.html`,
-      cancel_url: `${SITE_URL}/him.html`,
-    });
-
-    res.json({ url: charge.hosted_url });
-  } catch (err) {
-    console.error('Coinbase error:', err.message);
     res.status(500).json({ error: err.message });
   }
 });
