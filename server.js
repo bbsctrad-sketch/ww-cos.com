@@ -13,7 +13,7 @@ app.use(express.static('.'));
 const PORT = process.env.PORT || 3002;
 const SITE_URL = process.env.SITE_URL || `http://localhost:${PORT}`;
 
-// ── Stripe Checkout (carte + TWINT) ──────────────────────────────────────────
+// ── Stripe Checkout (carte) ──────────────────────────────────────────────────
 app.post('/api/checkout', async (req, res) => {
   const { name, price, image, quantity = 1 } = req.body;
 
@@ -25,7 +25,7 @@ app.post('/api/checkout', async (req, res) => {
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
       currency: 'chf',
-      payment_method_types: ['card', 'twint'],
+      payment_method_types: ['card'],
       line_items: [
         {
           quantity,

@@ -51,6 +51,8 @@
   }
   .logo-elle:hover { color: var(--ww-white); }
   .logo-elle .slash { font-weight: 300; margin: 0 0.3em; }
+  .logo-elle .elle-word { font-weight: 700; color: var(--ww-white); transition: color 0.2s; }
+  .logo-elle:hover .elle-word { color: #D9A89C; }
   .logo-group { display: inline-flex; align-items: baseline; white-space: nowrap; }
   .logo-static { cursor: default; }
   .nav-links a { color: rgba(245,245,243,0.6) !important; transition: color 0.2s; }
@@ -460,7 +462,7 @@
 <body>
 
 <nav class="nav">
-  <span class="logo-group"><a href="index.html" class="logo-ww">WW</a><span class="logo-ww logo-static"><span class="slash">/</span>LUI</span><a href="her.html" class="logo-elle"><span class="slash">/</span>ELLE</a></span>
+  <span class="logo-group"><a href="index.html" class="logo-ww">WW</a><span class="logo-ww logo-static"><span class="slash">/</span>LUI</span><a href="her.html" class="logo-elle"><span class="slash">/</span><span class="elle-word">ELLE</span></a></span>
   <div class="nav-links">
     <a href="#products">Produits</a>
     <a href="contact.html">Contact Pro</a>
@@ -486,7 +488,7 @@
           <span class="el-name">Tungsten</span>
         </div>
         <h1 style="font-family:'Karla',sans-serif; font-weight:800; font-size:clamp(2.2rem,4vw,4rem); line-height:0.95; letter-spacing:-0.03em; text-transform:uppercase; margin:0 0 1.5rem;">
-          Conçu<br/>pour<br/>l’homme<br/><em style="font-style:normal; color:var(--ww-steel);">moderne.</em>
+          Conçu<br/>pour<br/><em style="font-style:normal; color:#D4A843;">l’homme.</em>
         </h1>
         <p style="font-family:'Karla',sans-serif; font-size:0.6rem; font-weight:700; letter-spacing:0.35em; text-transform:uppercase; color:var(--ww-steel); margin:1.5rem 0 0.75rem;">Shiner Gold — La Cire Signature</p>
         <p style="font-family:'Karla',sans-serif; opacity:0.65; font-size:0.88rem; line-height:1.8; margin:0 0 0.9rem;">Sélectionnée par l’équipe Walter White après plus de 15 ans passés derrière le fauteuil de barbier, Shiner Gold est bien plus qu’une cire : c’est le résultat d’une expertise terrain et d’une exigence sans compromis.</p>
@@ -548,11 +550,11 @@
         </div>
       </div>
       <div class="pay-row" id="payRow1">
-        <button class="pay-btn pay-btn-card" onclick="payByCard(1,'Shiner Gold Pomade Clay')"><span id="labelCard1">Payer par carte / TWINT</span></button>
+        <button class="pay-btn pay-btn-card" onclick="payByCard(1,'Shiner Gold Pomade Clay')"><span id="labelCard1">Payer par carte</span></button>
       </div>
       <div class="trust-row">
         <span class="trust-item">✓ Livraison 2–3 j</span>
-        <span class="trust-item">✓ Retours 30 j</span>
+        <span class="trust-item">✓ Stock à Genève</span>
         <span class="trust-item">✓ Paiement sécurisé</span>
       </div>
     </div>
@@ -606,11 +608,11 @@
         </div>
       </div>
       <div class="pay-row" id="payRow2">
-        <button class="pay-btn pay-btn-card" onclick="payByCard(2,'Shiner Gold Heavy Classic')"><span id="labelCard2">Payer par carte / TWINT</span></button>
+        <button class="pay-btn pay-btn-card" onclick="payByCard(2,'Shiner Gold Heavy Classic')"><span id="labelCard2">Payer par carte</span></button>
       </div>
       <div class="trust-row">
         <span class="trust-item">✓ Livraison 2–3 j</span>
-        <span class="trust-item">✓ Retours 30 j</span>
+        <span class="trust-item">✓ Stock à Genève</span>
         <span class="trust-item">✓ Paiement sécurisé</span>
       </div>
     </div>
@@ -682,7 +684,7 @@
     if (lbl) lbl.textContent = CART_LABELS[optionIndex];
   }
 
-  const API_BASE = 'http://localhost:3002';
+  const API_BASE = 'https://www.ww-cos.com';
 
   function getProductData(productId, name) {
     const idx = selectedOffer[productId];
@@ -700,7 +702,7 @@
     if (!el || !btn) return;
     btn.disabled = loading;
     el.innerHTML = loading ? '<span class="pay-spinner"></span>' : (
-      method === 'Card' ? 'Payer par carte / TWINT' :
+      method === 'Card' ? 'Payer par carte' :
       method === 'Paypal' ? 'Payer avec PayPal' : 'Payer en crypto'
     );
   }

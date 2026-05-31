@@ -12,6 +12,19 @@
   body { background: #F4F1EC; color: #0A0A0A; }
   .nav { background: rgba(244,241,236,0.85); border-bottom: 1px solid rgba(0,0,0,0.06); }
   .nav a, .nav .logo { color: #0A0A0A !important; }
+  .logo-lui {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400; font-size: 1rem;
+    letter-spacing: 0.05em;
+    color: rgba(10,10,10,0.45) !important;
+    text-decoration: none;
+    margin-left: 0.3em;
+    padding: 0.05em 0.2em;
+    transition: background 0.15s, color 0.15s;
+    border-radius: 2px;
+  }
+  .logo-lui:hover .lui-word { color: #D4A843; font-weight: 700; }
+  .logo-lui .lui-slash { color: rgba(10,10,10,0.45); }
   .accent { color: #B8806E; }
   .accent-bg { background: var(--rose); }
   .btn-primary { background: #0A0A0A; border-color: #0A0A0A; color: #fff; }
@@ -28,7 +41,9 @@
 <body>
 
 <nav class="nav">
-  <a href="index.html" class="logo">WW · <span class="accent">ELLE</span></a>
+  <span class="logo" style="display:inline-flex;align-items:baseline;gap:0;">
+    <a href="index.html" style="font-family:inherit;font-weight:700;font-size:1.25rem;letter-spacing:0.05em;color:#0A0A0A;text-decoration:none;">WW · <span class="accent">ELLE</span></a><a href="him.html" class="logo-lui"><span class="lui-slash"> /</span> <span class="lui-word">LUI</span></a>
+  </span>
   <div class="nav-links">
     <a href="#product">Pure Line</a>
     <a href="#science">La Formule</a>
