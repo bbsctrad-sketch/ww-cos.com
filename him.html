@@ -40,6 +40,19 @@
     text-decoration: none;
   }
   .logo-ww .slash { color: var(--ww-steel); font-weight: 300; margin: 0 0.3em; }
+  .logo-elle {
+    font-family: 'Karla', sans-serif;
+    font-weight: 300;
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    color: var(--ww-steel);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .logo-elle:hover { color: var(--ww-white); }
+  .logo-elle .slash { font-weight: 300; margin: 0 0.3em; }
+  .logo-group { display: inline-flex; align-items: baseline; white-space: nowrap; }
+  .logo-static { cursor: default; }
   .nav-links a { color: rgba(245,245,243,0.6) !important; transition: color 0.2s; }
   .nav-links a:hover { color: var(--ww-white) !important; }
   .nav-links a.active { color: var(--ww-white) !important; border-bottom: 1px solid var(--ww-white); padding-bottom: 2px; }
@@ -249,8 +262,8 @@
   @media (max-width: 900px) { .brand-col { grid-column: 1 / -1; border-right: none; border-bottom: 1px solid var(--ww-dim); padding: 2.5rem 2rem; } }
   .product-card {
     background: #111;
-    padding: 2rem;
-    display: flex; flex-direction: column; gap: 1.25rem;
+    padding: 1.25rem;
+    display: flex; flex-direction: column; gap: 0.85rem;
     position: relative;
   }
   .product-card:first-child { background: #0D0D0D; }
@@ -268,17 +281,9 @@
   .trust-item { font-size: 0.78rem; opacity: 0.5; letter-spacing: 0.03em; }
   .product-img {
     background-color: #0D0D0D;
-    aspect-ratio: 1;
+    aspect-ratio: 4/3;
     overflow: hidden;
     position: relative;
-  }
-  .product-card:first-of-type .product-img::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at center, transparent 30%, #0D0D0D 75%);
-    pointer-events: none;
-    z-index: 1;
   }
   .gallery-main {
     width: 100%; height: 100%;
@@ -292,7 +297,7 @@
     background: #0D0D0D; padding: 0.35rem;
   }
   .gallery-thumb {
-    width: 52px; height: 52px;
+    width: 40px; height: 40px;
     object-fit: cover;
     cursor: pointer;
     border: 1px solid transparent;
@@ -455,11 +460,10 @@
 <body>
 
 <nav class="nav">
-  <a href="index.html" class="logo-ww">WW<span class="slash">/</span>LUI</a>
+  <span class="logo-group"><a href="index.html" class="logo-ww">WW</a><span class="logo-ww logo-static"><span class="slash">/</span>LUI</span><a href="her.html" class="logo-elle"><span class="slash">/</span>ELLE</a></span>
   <div class="nav-links">
     <a href="#products">Produits</a>
     <a href="contact.html">Contact Pro</a>
-    <a href="her.html">Elle</a>
   </div>
   <span data-lang-switch data-current="fr" data-fr="him.html" data-en="en/him.html"></span>
   <a href="#products" class="nav-boutique">Commander →</a>
@@ -499,12 +503,12 @@
     <div class="product-card">
       <div class="product-img">
         <img id="galleryMain1" class="gallery-main"
-          src="https://robbieschopshop.com.au/wp-content/uploads/2017/07/shiner-gold-clay-maximum-matte-rcs.jpg"
+          src="assets/clay-main.png"
           alt="Shiner Gold Pomade Clay" />
       </div>
       <div class="gallery-thumbs">
         <img class="gallery-thumb active"
-          src="https://robbieschopshop.com.au/wp-content/uploads/2017/07/shiner-gold-clay-maximum-matte-rcs.jpg"
+          src="assets/clay-main.png"
           alt="Vue 1" onclick="switchImg(this,1)" />
         <img class="gallery-thumb"
           src="https://www.hairpomades.com/web/image/product.image/1386/image_1024/Shiner%20Gold%20Clay%20Pomade?unique=904b61c"

@@ -3,59 +3,148 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>WW Cosmétiques · Notre Histoire</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<title>WW · Notre Histoire</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css">
 <link rel="stylesheet" href="assets/lang-switcher.css">
 <style>
-  body { background: #0A0A0A; color: #F4F1EC; }
-  .nav { background: rgba(10,10,10,0.7); border-bottom: 1px solid rgba(255,255,255,0.06); }
-  .nav a { color: #F4F1EC; }
-  .story-hero {
-    min-height: 60vh; display: flex; flex-direction: column;
-    align-items: center; justify-content: center; text-align: center;
-    padding: 6rem 2rem 4rem;
-    background: radial-gradient(ellipse at center, rgba(200,162,75,0.08), transparent 60%);
+  :root {
+    --ww-black: #0D0D0D;
+    --ww-white: #F5F5F3;
+    --ww-steel: #A8B0B8;
+    --ww-gold:  #C8A24B;
+    --ww-dim:   rgba(245,245,243,0.12);
   }
-  .story-body { max-width: 720px; margin: 0 auto; padding: 2rem 2rem 6rem; font-size: 1.05rem; line-height: 1.8; opacity: 0.85; }
+  body {
+    background: var(--ww-black);
+    color: var(--ww-white);
+    font-family: 'Karla', sans-serif;
+    margin: 0;
+  }
+  .nav {
+    background: rgba(13,13,13,0.85);
+    border-bottom: 1px solid var(--ww-dim);
+    backdrop-filter: blur(12px);
+  }
+  .logo-ww {
+    font-family: 'Karla', sans-serif;
+    font-weight: 800; font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    color: var(--ww-white); text-decoration: none;
+  }
+  .logo-ww .slash { color: var(--ww-steel); font-weight: 300; margin: 0 0.3em; }
+  .logo-elle {
+    font-family: 'Karla', sans-serif;
+    font-weight: 300; font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    color: var(--ww-steel); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .logo-elle:hover { color: var(--ww-white); }
+  .logo-elle .slash { font-weight: 300; margin: 0 0.3em; }
+  .logo-group { display: inline-flex; align-items: baseline; white-space: nowrap; }
+  .nav-links a { color: rgba(245,245,243,0.6) !important; transition: color 0.2s; font-family: 'Karla', sans-serif; }
+  .nav-links a:hover { color: var(--ww-white) !important; }
+  .nav-links a.active { color: var(--ww-white) !important; border-bottom: 1px solid var(--ww-white); padding-bottom: 2px; }
+  .nav-boutique {
+    font-family: 'Karla', sans-serif;
+    font-size: 0.65rem; font-weight: 700;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--ww-white) !important; text-decoration: none;
+    border: 1px solid var(--ww-dim);
+    padding: 0.45rem 1rem;
+  }
+
+  /* Hero */
+  .story-hero {
+    min-height: 55vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; text-align: center;
+    padding: 7rem 2rem 4rem;
+    border-bottom: 1px solid var(--ww-dim);
+  }
+  .story-label {
+    font-size: 0.65rem; font-weight: 700;
+    letter-spacing: 0.4em; text-transform: uppercase;
+    color: var(--ww-gold); margin-bottom: 1.5rem;
+  }
+  .story-hero h1 {
+    font-family: 'Karla', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 5vw, 4.5rem);
+    letter-spacing: -0.02em; text-transform: uppercase;
+    line-height: 1.05; margin: 0;
+    color: var(--ww-white);
+  }
+  .story-hero h1 em {
+    font-style: normal;
+    color: var(--ww-gold);
+  }
+
+  /* Body */
+  .story-body {
+    max-width: 680px; margin: 0 auto;
+    padding: 4rem 2rem 6rem;
+    font-size: 1rem; line-height: 1.85;
+    color: rgba(245,245,243,0.78);
+  }
   .story-body p { margin-bottom: 1.5rem; }
-  .story-body em { color: #C8A24B; font-style: italic; }
+  .story-body em { color: var(--ww-gold); font-style: italic; }
+  .story-body strong { color: var(--ww-white); font-weight: 700; }
+  .story-body .quote {
+    font-size: 1.3rem; font-weight: 300;
+    letter-spacing: 0.02em; font-style: italic;
+    text-align: center; padding: 2.5rem 0 0;
+    color: var(--ww-white); opacity: 0.9;
+    border-top: 1px solid var(--ww-dim);
+    margin-top: 1rem;
+  }
+
+  /* Footer */
+  .story-footer {
+    border-top: 1px solid var(--ww-dim);
+    padding: 2.5rem 2rem;
+    font-size: 0.7rem; letter-spacing: 0.25em;
+    text-transform: uppercase; color: rgba(245,245,243,0.3);
+  }
 </style>
 </head>
 <body>
 
 <nav class="nav">
-  <a href="index.html" class="logo" style="font-family:'Playfair Display',serif;">WW</a>
+  <span class="logo-group">
+    <a href="index.html" class="logo-ww">WW</a>
+    <span class="logo-ww" style="cursor:default;"><span class="slash">/</span>LUI</span>
+    <a href="her.html" class="logo-elle"><span class="slash">/</span>ELLE</a>
+  </span>
   <div class="nav-links">
-    <a href="him.html">Lui</a>
-    <a href="her.html">Elle</a>
-    <a href="story.html" style="opacity:0.6;">Histoire</a>
+    <a href="him.html">Produits</a>
+    <a href="story.html" class="active">Histoire</a>
+    <a href="contact.html">Contact Pro</a>
   </div>
   <span data-lang-switch data-current="fr" data-fr="story.html" data-en="en/story.html"></span>
-  <a href="contact.html" style="font-size:0.75rem; letter-spacing:0.25em; text-transform:uppercase;">Contact</a>
+  <a href="him.html#products" class="nav-boutique">Commander →</a>
 </nav>
 
 <section class="story-hero">
-  <p class="section-label" style="color:#C8A24B;">Notre Histoire</p>
-  <h1 class="serif" style="font-size: clamp(2.5rem, 6vw, 5rem); margin: 0; font-weight: 600; max-width: 900px;">
-    Deux <em style="color:#C8A24B;">univers</em>.<br/>Une <em style="color:#D9A89C;">obsession</em> : <span style="font-style:italic;">la pureté</span>.
-  </h1>
+  <p class="story-label">Notre Histoire</p>
+  <h1>Une sélection basée<br/>sur l'expérience.<br/><em>Une seule exigence.</em></h1>
 </section>
 
 <div class="story-body">
-  <p><em>WW Cosmétiques</em> est né d'une idée simple : la beauté mérite la même rigueur qu'une science.</p>
-  <p>La plupart des marques vendent des promesses. Nous avons choisi de vendre des formules — fabriquées en petites séries, testées en laboratoire, impitoyablement pures. <em>99,1 %</em> n'est pas un argument marketing. C'est le seuil en-dessous duquel nous refusons de descendre.</p>
-  <p>Nous avons divisé notre monde en deux. <strong style="color:#C8A24B;">LUI</strong>, pour l'homme moderne qui veut des outils qui performent. <strong style="color:#D9A89C;">ELLE</strong>, pour la femme qui trace sa propre ligne. Même laboratoire. Même exigence. Rituels différents.</p>
-  <p>Nous lançons avec deux produits — un par univers — parce que nous préférons perfectionner une chose plutôt que d'en vendre dix. Quand on trouve une formule qui fonctionne, le reste n'est que du bruit.</p>
-  <p style="font-family:'Playfair Display',serif; font-style:italic; font-size:1.5rem; text-align:center; padding-top: 2rem; opacity: 1; color: #fff;">
-    « La science de la beauté. »
-  </p>
+  <p><em>WW Cosmétiques</em> est né derrière le fauteuil — pas dans une salle de réunion.</p>
+  <p>Notre équipe a ouvert et dirigé <strong>16 barbershops</strong> en <strong>France, en Suisse et au Royaume-Uni</strong>, accumulant plus de <strong>15 ans d'expérience</strong> au service d'une clientèle exigeante. Ce terrain nous a appris une chose essentielle : la plupart des produits sur le marché ne méritent pas d'être dans un salon digne de ce nom.</p>
+  <p>Alors nous avons fait le tri. Nous avons sélectionné — uniquement — les produits que nous utilisions réellement dans nos barbershops, ceux que nous utilisons encore aujourd'hui. Des formules simples, de haute qualité, les plus respectueuses possible des cheveux et de la barbe. Des résultats que l'on peut promettre parce qu'on les a vus, chaque jour, pendant des années.</p>
+  <p>Ce que vous trouvez ici — <em>Shiner Gold, Proraso</em>, et les quelques références qui rejoindront notre catalogue — n'est pas le fruit d'un algorithme ou d'une tendance. C'est le résultat d'un usage quotidien professionnel, filtré par l'exigence.</p>
+  <p>Nous vendons aux particuliers. Nous vendons aussi aux professionnels en tant qu'<strong>exportateurs en gros basés en Suisse</strong>. Dans les deux cas, la sélection est la même : courte, rigoureuse, honnête.</p>
+  <p>Côté <strong style="color:#D9A89C;">ELLE</strong>, nous avons appliqué le même principe — par souci de parité et parce que l'exigence n'a pas de genre. Une sélection construite sur les mêmes critères : efficacité prouvée, formule saine, résultats réels.</p>
+  <p>Notre objectif n'est pas d'avoir une boutique pleine. C'est d'avoir une boutique juste.</p>
+  <p class="quote">« Pas une promesse. Une sélection. »</p>
 </div>
 
-<footer style="border-top: 1px solid rgba(255,255,255,0.1); padding: 3rem 2rem; font-size:0.8rem; color:rgba(255,255,255,0.6);">
-  <div class="container">
-    <div>© 2026 WW Cosmétiques. Fabriqué en petites séries.</div>
-  </div>
+<footer class="story-footer">
+  <div class="container">WW Cosmétiques · Petites séries · Suisse · © 2026</div>
 </footer>
 
 <script src="assets/lang-switcher.js"></script>
