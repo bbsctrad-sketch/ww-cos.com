@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>WW · ELLE — Traits audacieux. Science pure.</title>
+<title>Hair Growth & Density Treatment — Freshly Cosmetics | WW Cosmétiques</title>
+<meta name="description" content="Traitement croissance capillaire 99,9% naturel. Réduit la chute de 57%, densité +69%. Testé cliniquement, convient pendant la grossesse. Livraison Suisse." />
+<link rel="canonical" href="https://www.ww-cos.com/her.html" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css">
@@ -33,7 +35,50 @@
   .btn-primary:hover span { color: #0A0A0A; }
   .hero { background: linear-gradient(135deg, #F4F1EC 0%, #EADBD0 100%); }
   .hero-img { background-image: url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=1200&q=80'); }
-  .product-img { background-image: url('https://images.unsplash.com/photo-1631214540242-3cd8c4b0b3b8?w=1000&q=80'); background-color: #EADBD0; }
+  .product-img { background-color: #EAF4F4; }
+
+  /* Product card her */
+  .her-products { max-width: 1100px; margin: 0 auto; padding: 4rem 2rem; }
+  .her-product-card {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+    align-items: start; margin-bottom: 5rem;
+    padding-bottom: 5rem; border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+  @media(max-width:768px){ .her-product-card { grid-template-columns: 1fr; gap: 2rem; } }
+  .her-img-wrap {
+    background: #EAF4F4; border-radius: 4px; overflow: hidden;
+    aspect-ratio: 3/4; display: flex; align-items: center; justify-content: center;
+  }
+  .her-img-wrap img { width: 75%; object-fit: contain; }
+  .her-badge {
+    display: inline-block; font-size: 0.6rem; font-weight: 700;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    background: #3BAAB5; color: #fff;
+    padding: 0.3rem 0.75rem; border-radius: 2px; margin-bottom: 1rem;
+  }
+  .her-product-name { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem,3vw,2.4rem); font-weight: 600; margin: 0 0 0.5rem; line-height: 1.2; }
+  .her-brand { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; opacity: 0.45; margin-bottom: 1.5rem; }
+  .her-stats {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+    margin: 1.5rem 0; padding: 1.25rem; background: rgba(59,170,181,0.08); border-radius: 4px;
+  }
+  .her-stat { text-align: center; }
+  .her-stat-num { font-size: 1.5rem; font-weight: 700; color: #3BAAB5; line-height: 1; }
+  .her-stat-label { font-size: 0.65rem; opacity: 0.6; margin-top: 0.25rem; line-height: 1.3; }
+  .her-features { list-style: none; padding: 0; margin: 1.5rem 0; font-size: 0.9rem; line-height: 2; }
+  .her-features li::before { content: '✓ '; color: #3BAAB5; font-weight: 700; }
+  .her-price-row { display: flex; align-items: baseline; gap: 1rem; margin: 1.5rem 0 0.5rem; }
+  .her-price { font-size: 1.8rem; font-weight: 700; }
+  .her-volume { font-size: 0.75rem; opacity: 0.45; letter-spacing: 0.15em; }
+  .her-pay-btn {
+    width: 100%; padding: 1rem; border: none; cursor: pointer;
+    font-family: inherit; font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    background: #0A0A0A; color: #fff;
+    transition: background 0.2s;
+  }
+  .her-pay-btn:hover { background: #3BAAB5; }
+  .her-trust { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 1rem; font-size: 0.75rem; opacity: 0.5; }
   .feature { border-color: rgba(0,0,0,0.15); }
   .marquee { color: #0A0A0A; }
 </style>
@@ -54,82 +99,103 @@
 </nav>
 
 <!-- Hero -->
-<section class="hero">
+<section class="hero" style="background: linear-gradient(135deg, #EAF4F4 0%, #F4F1EC 100%);">
   <div>
-    <p class="section-label accent">Pour Elle · Eye-liner liquide</p>
-    <h1>Traits audacieux.<br/>Science <em class="accent">pure</em>.</h1>
-    <p class="lead">Des cosmétiques haute performance, formulés comme de la couture. Un seul trait. Impact total.</p>
-    <a href="#product" class="btn btn-primary"><span>Découvrir Pure Line →</span></a>
+    <p class="section-label" style="color:#3BAAB5;">Pour Elle · Soin capillaire</p>
+    <h1>Stopper la chute.<br/>Activer la <em style="color:#3BAAB5;">densité.</em></h1>
+    <p class="lead">Une sélection de produits construite sur les mêmes critères que notre univers homme — efficacité prouvée, formule saine, résultats réels.</p>
+    <a href="#products" class="btn btn-primary"><span>Voir les produits →</span></a>
   </div>
-  <div class="hero-img"></div>
+  <div class="hero-img" style="background-image:url('assets/freshly-hair-growth.png'); background-size: contain; background-repeat: no-repeat; background-position: center; background-color: #EAF4F4;"></div>
 </section>
 
 <!-- Marquee -->
-<div class="marquee" style="background:#0A0A0A; color:#EADBD0; border:none;">
+<div class="marquee" style="background:#0A0A0A; color:#EAF4F4; border:none;">
   <div class="marquee-track">
-    <span>Pigment pur à 99,1 %</span><span>·</span>
-    <span>Waterproof 24h</span><span>·</span>
-    <span>Végan & Cruelty-Free</span><span>·</span>
-    <span>Pointe feutre de précision</span><span>·</span>
-    <span>Le noir le plus pur</span><span>·</span>
-    <span>Pigment pur à 99,1 %</span><span>·</span>
-    <span>Waterproof 24h</span><span>·</span>
-    <span>Végan & Cruelty-Free</span><span>·</span>
-    <span>Pointe feutre de précision</span><span>·</span>
-    <span>Le noir le plus pur</span><span>·</span>
+    <span>99,9 % naturelle</span><span>·</span>
+    <span>Testé cliniquement</span><span>·</span>
+    <span>Chute −57 %</span><span>·</span>
+    <span>Densité +69 %</span><span>·</span>
+    <span>Compatible grossesse</span><span>·</span>
+    <span>Sans minoxidil</span><span>·</span>
+    <span>Smart Growth Activator</span><span>·</span>
+    <span>99,9 % naturelle</span><span>·</span>
+    <span>Testé cliniquement</span><span>·</span>
+    <span>Chute −57 %</span><span>·</span>
   </div>
 </div>
 
-<!-- Product -->
-<section id="product">
-  <div class="container product-preview">
-    <div class="img-wrap product-img"></div>
-    <div>
-      <p class="section-label accent">Produit signature · 1,2 ml</p>
-      <h2 class="serif" style="font-size: clamp(2rem,4vw,3rem); margin: 0 0 1rem;">Pure Line</h2>
-      <p style="opacity:0.75; line-height:1.6; margin-bottom: 1.5rem;">
-        L'eye-liner liquide dans sa forme la plus pure. Ultra-pigmenté, anti-bavures, formulé pour la femme qui trace sa propre ligne — et ne la franchit jamais.
-      </p>
-      <ul style="list-style:none; padding:0; margin:0 0 2rem; font-size:0.9rem; line-height:2; opacity:0.85;">
-        <li>— Pigment pur à 99,1 %</li>
-        <li>— Waterproof 24h, anti-bavures</li>
-        <li>— Pointe feutre de précision</li>
-        <li>— Végan & cruelty-free</li>
-      </ul>
-      <div style="display:flex; align-items:center; gap:2rem; margin-bottom:2rem;">
-        <span class="price">24 €</span>
-        <span style="font-size:0.75rem; letter-spacing:0.2em; text-transform:uppercase; opacity:0.6;">Livraison offerte dès 50 €</span>
+<!-- Products -->
+<section id="products">
+  <div class="her-products">
+    <div class="her-product-card">
+      <!-- Image -->
+      <div class="her-img-wrap">
+        <img src="assets/freshly-hair-growth.png" alt="Hair Growth & Density Treatment Freshly Cosmetics" />
       </div>
-      <button class="btn btn-primary" onclick="addToCart()"><span>Ajouter au panier →</span></button>
+      <!-- Info -->
+      <div>
+        <span class="her-badge">Soin capillaire · 50 ml</span>
+        <h2 class="her-product-name">Hair Growth &amp;<br/>Density Treatment</h2>
+        <p class="her-brand">Freshly Cosmetics · Sélection WW</p>
+
+        <div class="her-stats">
+          <div class="her-stat"><div class="her-stat-num">−57%</div><div class="her-stat-label">Chute en 3 mois</div></div>
+          <div class="her-stat"><div class="her-stat-num">+69%</div><div class="her-stat-label">Densité capillaire</div></div>
+          <div class="her-stat"><div class="her-stat-num">+31%</div><div class="her-stat-label">Résistance</div></div>
+        </div>
+
+        <ul class="her-features">
+          <li>Formule 99,9 % naturelle — sans silicones ni parabènes</li>
+          <li>Testé cliniquement · 96 % de satisfaction volontaires</li>
+          <li>Compatible grossesse, allaitement & post-partum</li>
+          <li>Sans minoxidil, finastéride ni stéroïdes</li>
+          <li>Compatible méthode curly · Flacon en verre</li>
+          <li>Technologie Smart Growth Activator (efficacité ×12)</li>
+        </ul>
+
+        <div class="her-price-row">
+          <span class="her-price">CHF 38</span>
+          <span class="her-volume">50 ml · Sans parfum</span>
+        </div>
+
+        <button class="her-pay-btn" onclick="payHer('Hair Growth & Density Treatment', 38)">Payer par carte →</button>
+
+        <div class="her-trust">
+          <span>✓ Stock à Genève</span>
+          <span>✓ Livraison CH 2–4 j</span>
+          <span>✓ Paiement sécurisé</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- Science -->
-<section id="science" style="background: #EADBD0;">
+<section id="science" style="background: #EAF4F4;">
   <div class="container">
-    <p class="section-label accent">La Formule</p>
-    <h2 class="section-title">La beauté,<br/><em class="accent">formulée.</em></h2>
+    <p class="section-label" style="color:#3BAAB5;">Efficacité testée</p>
+    <h2 class="section-title">La science,<br/><em style="color:#3BAAB5;">prouvée.</em></h2>
     <div class="features">
       <div class="feature">
-        <div class="num">01</div>
-        <h4>Pigment pur</h4>
-        <p>Le noir le plus intense. Testé en laboratoire à chaque série.</p>
+        <div class="num" style="color:#3BAAB5;">89%</div>
+        <h4>Chute réduite</h4>
+        <p>Des volontaires observent une réduction de la chute dès 45 jours.</p>
       </div>
       <div class="feature">
-        <div class="num">02</div>
-        <h4>Tenue 24h</h4>
-        <p>Waterproof, anti-bavures, anti-transpiration. Tracé pour durer.</p>
+        <div class="num" style="color:#3BAAB5;">93%</div>
+        <h4>Densité accrue</h4>
+        <p>Des volontaires constatent une densité capillaire accrue à 150 jours.</p>
       </div>
       <div class="feature">
-        <div class="num">03</div>
-        <h4>Pointe précision</h4>
-        <p>Feutre ultra-fin, du trait discret au regard ailé le plus audacieux.</p>
+        <div class="num" style="color:#3BAAB5;">×12</div>
+        <h4>Smart Growth</h4>
+        <p>Technologie d'encapsulation naturelle, 12× plus efficace que les formules standard.</p>
       </div>
       <div class="feature">
-        <div class="num">04</div>
-        <h4>Clean Beauty</h4>
-        <p>Végan, cruelty-free, fabriqué en Europe. Rien à cacher.</p>
+        <div class="num" style="color:#3BAAB5;">96%</div>
+        <h4>Satisfaction</h4>
+        <p>Des volontaires satisfaits du produit dans les études cliniques.</p>
       </div>
     </div>
   </div>
@@ -159,8 +225,25 @@
 
 <script src="assets/lang-switcher.js"></script>
 <script>
-  function addToCart() {
-    alert('Pure Line ajouté au panier — paiement bientôt disponible ✦');
+  const API_BASE = 'https://www.ww-cos.com';
+
+  async function payHer(name, price) {
+    const btn = event.currentTarget;
+    btn.textContent = 'Redirection...';
+    btn.disabled = true;
+    try {
+      const res = await fetch(`${API_BASE}/api/checkout`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, price, quantity: 1 })
+      });
+      const data = await res.json();
+      if (data.url) { window.location.href = data.url; }
+      else { alert('Erreur : ' + (data.error || 'inconnue')); btn.textContent = 'Payer par carte →'; btn.disabled = false; }
+    } catch(e) {
+      alert('Erreur de connexion au serveur.');
+      btn.textContent = 'Payer par carte →'; btn.disabled = false;
+    }
   }
 </script>
 </body>
