@@ -76,9 +76,17 @@
   .her-stat-label { font-size: 0.65rem; opacity: 0.6; margin-top: 0.25rem; line-height: 1.3; }
   .her-features { list-style: none; padding: 0; margin: 1.5rem 0; font-size: 0.9rem; line-height: 2; }
   .her-features li::before { content: '✓ '; color: #3BAAB5; font-weight: 700; }
-  .her-price-row { display: flex; align-items: baseline; gap: 1rem; margin: 1.5rem 0 0.5rem; }
-  .her-price { font-size: 1.8rem; font-weight: 700; }
-  .her-volume { font-size: 0.75rem; opacity: 0.45; letter-spacing: 0.15em; }
+  .her-options { display: grid; grid-template-columns: repeat(3,1fr); gap: 0.6rem; margin: 1.5rem 0; }
+  .her-option {
+    padding: 0.85rem 0.5rem; border: 1.5px solid rgba(0,0,0,0.15); border-radius: 4px;
+    cursor: pointer; text-align: center; transition: border-color 0.2s, background 0.2s;
+    background: #fff;
+  }
+  .her-option.selected { border-color: #3BAAB5; background: rgba(59,170,181,0.07); }
+  .her-option-duration { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.5; margin-bottom: 0.25rem; }
+  .her-option-price { font-size: 1.3rem; font-weight: 700; line-height: 1; }
+  .her-option-units { font-size: 0.65rem; opacity: 0.45; margin-top: 0.2rem; }
+  .her-option-save { font-size: 0.6rem; color: #3BAAB5; font-weight: 700; margin-top: 0.2rem; }
   .her-pay-btn {
     width: 100%; padding: 1rem; border: none; cursor: pointer;
     font-family: inherit; font-size: 0.75rem; font-weight: 700;
@@ -176,12 +184,27 @@
           <li>Technologie Smart Growth Activator (efficacité ×12)</li>
         </ul>
 
-        <div class="her-price-row">
-          <span class="her-price">CHF 38</span>
-          <span class="her-volume">50 ml · Sans parfum</span>
+        <div class="her-options">
+          <div class="her-option selected" onclick="selectOption(this, 24, 'Traitement 45 jours', 1)">
+            <div class="her-option-duration">45 jours</div>
+            <div class="her-option-price">CHF 24</div>
+            <div class="her-option-units">1 flacon · 50 ml</div>
+          </div>
+          <div class="her-option" onclick="selectOption(this, 45, 'Traitement 90 jours', 2)">
+            <div class="her-option-duration">90 jours</div>
+            <div class="her-option-price">CHF 45</div>
+            <div class="her-option-units">2 flacons</div>
+            <div class="her-option-save">−6%</div>
+          </div>
+          <div class="her-option" onclick="selectOption(this, 88, 'Traitement 180 jours', 4)">
+            <div class="her-option-duration">180 jours</div>
+            <div class="her-option-price">CHF 88</div>
+            <div class="her-option-units">4 flacons</div>
+            <div class="her-option-save">−8%</div>
+          </div>
         </div>
 
-        <button class="her-pay-btn" onclick="payHer('Hair Growth & Density Treatment', 38)">Payer par carte →</button>
+        <button class="her-pay-btn" id="herPayBtn" onclick="payHerSelected()">Payer par carte — CHF 24 →</button>
 
         <div class="her-trust">
           <span>✓ Stock à Genève</span>
@@ -249,28 +272,37 @@
 <script>
   const API_BASE = 'https://www.ww-cos.com';
 
+  let herSelected = { price: 24, name: 'Hair Growth & Density Treatment — 45 jours', quantity: 1 };
+
+  function selectOption(el, price, label, qty) {
+    document.querySelectorAll('.her-option').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    herSelected = { price, name: 'Hair Growth & Density Treatment — ' + label, quantity: qty };
+    document.getElementById('herPayBtn').textContent = `Payer par carte — CHF ${price} →`;
+  }
+
   function switchHerImg(thumb) {
     document.getElementById('herMain').src = thumb.querySelector('img').src;
     thumb.closest('.her-gallery-thumbs').querySelectorAll('.her-gallery-thumb').forEach(t => t.classList.remove('active'));
     thumb.classList.add('active');
   }
 
-  async function payHer(name, price) {
-    const btn = event.currentTarget;
-    btn.textContent = 'Redirection...';
-    btn.disabled = true;
+  async function payHerSelected() {
+    const btn = document.getElementById('herPayBtn');
+    const orig = btn.textContent;
+    btn.textContent = 'Redirection...'; btn.disabled = true;
     try {
       const res = await fetch(`${API_BASE}/api/checkout`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, price, quantity: 1 })
+        body: JSON.stringify({ name: herSelected.name, price: herSelected.price, quantity: 1 })
       });
       const data = await res.json();
       if (data.url) { window.location.href = data.url; }
-      else { alert('Erreur : ' + (data.error || 'inconnue')); btn.textContent = 'Payer par carte →'; btn.disabled = false; }
+      else { alert('Erreur : ' + (data.error || 'inconnue')); btn.textContent = orig; btn.disabled = false; }
     } catch(e) {
       alert('Erreur de connexion au serveur.');
-      btn.textContent = 'Payer par carte →'; btn.disabled = false;
+      btn.textContent = orig; btn.disabled = false;
     }
   }
 </script>
