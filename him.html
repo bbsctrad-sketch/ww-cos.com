@@ -450,6 +450,48 @@
 
   /* Section label override */
   .section-label { font-family: 'Karla', sans-serif; font-weight: 700; }
+
+  /* Order Modal */
+  .order-modal {
+    display: none; position: fixed; inset: 0; z-index: 300;
+    background: rgba(0,0,0,0.88); backdrop-filter: blur(6px);
+    align-items: center; justify-content: center;
+  }
+  .order-modal.open { display: flex; }
+  .modal-box {
+    background: #111; border: 1px solid var(--ww-dim);
+    max-width: 460px; width: 92%; padding: 2rem;
+    position: relative; max-height: 92vh; overflow-y: auto;
+  }
+  .modal-close {
+    position: absolute; top: 0.85rem; right: 1rem;
+    background: none; border: none; color: var(--ww-steel);
+    cursor: pointer; font-size: 1rem; font-family: 'Karla', sans-serif;
+  }
+  .modal-close:hover { color: var(--ww-white); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.3rem; margin-bottom: 0.85rem; }
+  .form-group label {
+    font-family: 'Karla', sans-serif; font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.25em; text-transform: uppercase; color: var(--ww-steel);
+  }
+  .form-group input, .form-group select {
+    background: #1a1a1a; border: 1px solid var(--ww-dim); color: var(--ww-white);
+    font-family: 'Karla', sans-serif; font-size: 0.88rem;
+    padding: 0.6rem 0.75rem; outline: none; transition: border-color 0.15s;
+  }
+  .form-group input:focus, .form-group select:focus { border-color: var(--ww-steel); }
+  .form-group input::placeholder { opacity: 0.3; }
+  .form-group select option { background: #1a1a1a; }
+  .form-submit {
+    width: 100%; padding: 0.9rem; margin-top: 0.25rem;
+    background: var(--ww-white); color: var(--ww-black);
+    font-family: 'Karla', sans-serif; font-size: 0.72rem; font-weight: 800;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    border: none; cursor: pointer; transition: background 0.15s;
+  }
+  .form-submit:hover { background: #d8d8d6; }
+  .form-submit:disabled { opacity: 0.5; cursor: not-allowed; }
 </style>
 </head>
 <body>
@@ -667,6 +709,59 @@
   <button class="btn-ww-dark" onclick="addBundle()">Commander les 2 → 50 CHF</button>
 </div>
 
+<!-- Order Modal -->
+<div class="order-modal" id="orderModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <p style="font-family:'Karla',sans-serif; font-size:0.58rem; font-weight:700; letter-spacing:0.4em; text-transform:uppercase; color:var(--ww-steel); margin:0 0 0.3rem;">Finaliser la commande</p>
+    <h3 id="modalTitle" style="font-family:'Karla',sans-serif; font-weight:800; font-size:1rem; text-transform:uppercase; margin:0 0 1.5rem; letter-spacing:-0.01em;"></h3>
+    <form id="orderForm" onsubmit="submitOrderForm(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Prénom</label>
+          <input type="text" name="prenom" required placeholder="Jean" />
+        </div>
+        <div class="form-group">
+          <label>Nom</label>
+          <input type="text" name="nom" required placeholder="Dupont" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Adresse e-mail</label>
+        <input type="email" name="email" required placeholder="jean@exemple.com" />
+      </div>
+      <div class="form-group">
+        <label>Téléphone</label>
+        <input type="tel" name="phone" required placeholder="+41 79 000 00 00" />
+      </div>
+      <div class="form-group">
+        <label>Adresse de livraison</label>
+        <input type="text" name="adresse" required placeholder="Rue de la Paix 10" />
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>NPA</label>
+          <input type="text" name="npa" required placeholder="1201" />
+        </div>
+        <div class="form-group">
+          <label>Ville</label>
+          <input type="text" name="ville" required placeholder="Genève" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Pays</label>
+        <select name="pays">
+          <option value="CH" selected>Suisse</option>
+          <option value="FR">France</option>
+          <option value="BE">Belgique</option>
+          <option value="LU">Luxembourg</option>
+        </select>
+      </div>
+      <button type="submit" class="form-submit" id="formSubmitBtn">Procéder au paiement →</button>
+    </form>
+  </div>
+</div>
+
 <script src="assets/lang-switcher.js"></script>
 <script>
   const selectedOffer = { 1: 0, 2: 0 };
@@ -714,21 +809,40 @@
     );
   }
 
-  async function payByCard(productId, name) {
+  let pendingOrder = null;
+
+  function payByCard(productId, name) {
     const data = getProductData(productId, name);
     if (!data) return;
-    setLoading(productId, 'Card', true);
+    pendingOrder = { productId, data };
+    document.getElementById('modalTitle').textContent = data.name;
+    document.getElementById('orderModal').classList.add('open');
+    document.getElementById('orderForm').reset();
+  }
+
+  function closeModal() {
+    document.getElementById('orderModal').classList.remove('open');
+    pendingOrder = null;
+  }
+
+  async function submitOrderForm(e) {
+    e.preventDefault();
+    if (!pendingOrder) return;
+    const form = e.target;
+    const btn = document.getElementById('formSubmitBtn');
+    const customer = Object.fromEntries(new FormData(form));
+    btn.textContent = 'Redirection...'; btn.disabled = true;
     try {
       const res = await fetch(`${API_BASE}/api/checkout`, {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
+        body: JSON.stringify({ ...pendingOrder.data, customer })
       });
       const json = await res.json();
       if (json.url) window.location.href = json.url;
       else throw new Error(json.error || 'Erreur inconnue');
-    } catch (e) {
-      alert(`Erreur paiement carte : ${e.message}`);
-      setLoading(productId, 'Card', false);
+    } catch (err) {
+      alert(`Erreur : ${err.message}`);
+      btn.textContent = 'Procéder au paiement →'; btn.disabled = false;
     }
   }
 

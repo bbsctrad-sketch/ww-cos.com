@@ -97,6 +97,47 @@
   .her-pay-btn:hover { background: #3BAAB5; }
   .her-trust { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 1rem; font-size: 0.75rem; opacity: 0.5; }
   .feature { border-color: rgba(0,0,0,0.15); }
+
+  /* Order Modal */
+  .order-modal {
+    display: none; position: fixed; inset: 0; z-index: 300;
+    background: rgba(0,0,0,0.75); backdrop-filter: blur(6px);
+    align-items: center; justify-content: center;
+  }
+  .order-modal.open { display: flex; }
+  .modal-box {
+    background: #fff; border: 1px solid rgba(0,0,0,0.1);
+    max-width: 460px; width: 92%; padding: 2rem;
+    position: relative; max-height: 92vh; overflow-y: auto;
+  }
+  .modal-close {
+    position: absolute; top: 0.85rem; right: 1rem;
+    background: none; border: none; color: #999;
+    cursor: pointer; font-size: 1rem;
+  }
+  .modal-close:hover { color: #0A0A0A; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.3rem; margin-bottom: 0.85rem; }
+  .form-group label {
+    font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.25em; text-transform: uppercase; color: #888;
+  }
+  .form-group input, .form-group select {
+    background: #fafafa; border: 1px solid rgba(0,0,0,0.15); color: #0A0A0A;
+    font-family: inherit; font-size: 0.88rem;
+    padding: 0.6rem 0.75rem; outline: none; transition: border-color 0.15s;
+  }
+  .form-group input:focus, .form-group select:focus { border-color: #3BAAB5; }
+  .form-group input::placeholder { opacity: 0.35; }
+  .form-submit {
+    width: 100%; padding: 0.9rem; margin-top: 0.25rem;
+    background: #0A0A0A; color: #fff;
+    font-family: inherit; font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    border: none; cursor: pointer; transition: background 0.15s;
+  }
+  .form-submit:hover { background: #3BAAB5; }
+  .form-submit:disabled { opacity: 0.5; cursor: not-allowed; }
   .marquee { color: #0A0A0A; }
 </style>
 </head>
@@ -204,7 +245,7 @@
           </div>
         </div>
 
-        <button class="her-pay-btn" id="herPayBtn" onclick="payHerSelected()">Payer par carte — CHF 24 →</button>
+        <button class="her-pay-btn" id="herPayBtn" onclick="openHerModal()">Payer par carte — CHF 24 →</button>
 
         <div class="her-trust">
           <span>✓ Stock à Genève</span>
@@ -268,11 +309,74 @@
   </div>
 </footer>
 
+<!-- Order Modal -->
+<div class="order-modal" id="orderModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <p style="font-size:0.58rem; font-weight:700; letter-spacing:0.4em; text-transform:uppercase; color:#888; margin:0 0 0.3rem;">Finaliser la commande</p>
+    <h3 id="modalTitle" style="font-weight:700; font-size:1rem; margin:0 0 1.5rem;"></h3>
+    <form id="orderForm" onsubmit="submitOrderForm(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Prénom</label>
+          <input type="text" name="prenom" required placeholder="Jean" />
+        </div>
+        <div class="form-group">
+          <label>Nom</label>
+          <input type="text" name="nom" required placeholder="Dupont" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Adresse e-mail</label>
+        <input type="email" name="email" required placeholder="jean@exemple.com" />
+      </div>
+      <div class="form-group">
+        <label>Téléphone</label>
+        <input type="tel" name="phone" required placeholder="+41 79 000 00 00" />
+      </div>
+      <div class="form-group">
+        <label>Adresse de livraison</label>
+        <input type="text" name="adresse" required placeholder="Rue de la Paix 10" />
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>NPA</label>
+          <input type="text" name="npa" required placeholder="1201" />
+        </div>
+        <div class="form-group">
+          <label>Ville</label>
+          <input type="text" name="ville" required placeholder="Genève" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Pays</label>
+        <select name="pays">
+          <option value="CH" selected>Suisse</option>
+          <option value="FR">France</option>
+          <option value="BE">Belgique</option>
+          <option value="LU">Luxembourg</option>
+        </select>
+      </div>
+      <button type="submit" class="form-submit" id="formSubmitBtn">Procéder au paiement →</button>
+    </form>
+  </div>
+</div>
+
 <script src="assets/lang-switcher.js"></script>
 <script>
   const API_BASE = 'https://www.ww-cos.com';
 
   let herSelected = { price: 24, name: 'Hair Growth & Density Treatment — 45 jours', quantity: 1 };
+
+  function openHerModal() {
+    document.getElementById('modalTitle').textContent = herSelected.name + ' — CHF ' + herSelected.price;
+    document.getElementById('orderModal').classList.add('open');
+    document.getElementById('orderForm').reset();
+  }
+
+  function closeModal() {
+    document.getElementById('orderModal').classList.remove('open');
+  }
 
   function selectOption(el, price, label, qty) {
     document.querySelectorAll('.her-option').forEach(o => o.classList.remove('selected'));
@@ -287,22 +391,23 @@
     thumb.classList.add('active');
   }
 
-  async function payHerSelected() {
-    const btn = document.getElementById('herPayBtn');
-    const orig = btn.textContent;
+  async function submitOrderForm(e) {
+    e.preventDefault();
+    const btn = document.getElementById('formSubmitBtn');
+    const customer = Object.fromEntries(new FormData(e.target));
     btn.textContent = 'Redirection...'; btn.disabled = true;
     try {
       const res = await fetch(`${API_BASE}/api/checkout`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: herSelected.name, price: herSelected.price, quantity: 1 })
+        body: JSON.stringify({ name: herSelected.name, price: herSelected.price, quantity: 1, customer })
       });
       const data = await res.json();
       if (data.url) { window.location.href = data.url; }
-      else { alert('Erreur : ' + (data.error || 'inconnue')); btn.textContent = orig; btn.disabled = false; }
+      else { alert('Erreur : ' + (data.error || 'inconnue')); btn.textContent = 'Procéder au paiement →'; btn.disabled = false; }
     } catch(e) {
       alert('Erreur de connexion au serveur.');
-      btn.textContent = orig; btn.disabled = false;
+      btn.textContent = 'Procéder au paiement →'; btn.disabled = false;
     }
   }
 </script>

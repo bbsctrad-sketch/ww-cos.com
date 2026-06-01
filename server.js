@@ -15,14 +15,14 @@ const SITE_URL = process.env.SITE_URL || `http://localhost:${PORT}`;
 
 // ── Stripe Checkout (carte) ──────────────────────────────────────────────────
 app.post('/api/checkout', async (req, res) => {
-  const { name, price, image, quantity = 1 } = req.body;
+  const { name, price, image, quantity = 1, customer } = req.body;
 
   if (!name || !price) {
     return res.status(400).json({ error: 'Paramètres manquants : name, price requis.' });
   }
 
   try {
-    const session = await stripe.checkout.sessions.create({
+    const sessionParams = {
       mode: 'payment',
       currency: 'chf',
       payment_method_types: ['card'],
@@ -40,8 +40,19 @@ app.post('/api/checkout', async (req, res) => {
         },
       ],
       success_url: `${SITE_URL}/merci.html?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${SITE_URL}/him.html`,
-    });
+      cancel_url: req.headers.referer || `${SITE_URL}/him.html`,
+    };
+
+    if (customer?.email) sessionParams.customer_email = customer.email;
+    if (customer) {
+      sessionParams.metadata = {
+        nom: `${customer.prenom || ''} ${customer.nom || ''}`.trim(),
+        phone: customer.phone || '',
+        adresse: `${customer.adresse || ''}, ${customer.npa || ''} ${customer.ville || ''}, ${customer.pays || ''}`.trim(),
+      };
+    }
+
+    const session = await stripe.checkout.sessions.create(sessionParams);
 
     res.json({ url: session.url });
   } catch (err) {
