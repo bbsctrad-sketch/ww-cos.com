@@ -45,11 +45,20 @@
     padding-bottom: 5rem; border-bottom: 1px solid rgba(0,0,0,0.08);
   }
   @media(max-width:768px){ .her-product-card { grid-template-columns: 1fr; gap: 2rem; } }
-  .her-img-wrap {
+  .her-img-wrap { display: flex; flex-direction: column; gap: 0.75rem; }
+  .her-gallery-main {
     background: #EAF4F4; border-radius: 4px; overflow: hidden;
-    aspect-ratio: 3/4; display: flex; align-items: center; justify-content: center;
+    aspect-ratio: 4/5; display: flex; align-items: center; justify-content: center;
   }
-  .her-img-wrap img { width: 75%; object-fit: contain; }
+  .her-gallery-main img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity 0.3s; }
+  .her-gallery-thumbs { display: flex; gap: 0.5rem; }
+  .her-gallery-thumb {
+    width: 72px; height: 72px; border-radius: 3px; overflow: hidden;
+    cursor: pointer; opacity: 0.55; transition: opacity 0.2s;
+    border: 2px solid transparent; flex-shrink: 0;
+  }
+  .her-gallery-thumb.active { opacity: 1; border-color: #3BAAB5; }
+  .her-gallery-thumb img { width: 100%; height: 100%; object-fit: cover; }
   .her-badge {
     display: inline-block; font-size: 0.6rem; font-weight: 700;
     letter-spacing: 0.3em; text-transform: uppercase;
@@ -129,9 +138,25 @@
 <section id="products">
   <div class="her-products">
     <div class="her-product-card">
-      <!-- Image -->
+      <!-- Gallery -->
       <div class="her-img-wrap">
-        <img src="assets/freshly-hair-growth.png" alt="Hair Growth & Density Treatment Freshly Cosmetics" />
+        <div class="her-gallery-main">
+          <img id="herMain" src="assets/freshly-lifestyle.png" alt="Hair Growth & Density Treatment" />
+        </div>
+        <div class="her-gallery-thumbs">
+          <div class="her-gallery-thumb active" onclick="switchHerImg(this)">
+            <img src="assets/freshly-lifestyle.png" alt="Vue 1" />
+          </div>
+          <div class="her-gallery-thumb" onclick="switchHerImg(this)">
+            <img src="assets/freshly-main.png" alt="Vue 2" />
+          </div>
+          <div class="her-gallery-thumb" onclick="switchHerImg(this)">
+            <img src="assets/freshly-2.jpg" alt="Vue 3" />
+          </div>
+          <div class="her-gallery-thumb" onclick="switchHerImg(this)">
+            <img src="assets/freshly-3.jpg" alt="Vue 4" />
+          </div>
+        </div>
       </div>
       <!-- Info -->
       <div>
@@ -226,6 +251,12 @@
 <script src="assets/lang-switcher.js"></script>
 <script>
   const API_BASE = 'https://www.ww-cos.com';
+
+  function switchHerImg(thumb) {
+    document.getElementById('herMain').src = thumb.querySelector('img').src;
+    thumb.closest('.her-gallery-thumbs').querySelectorAll('.her-gallery-thumb').forEach(t => t.classList.remove('active'));
+    thumb.classList.add('active');
+  }
 
   async function payHer(name, price) {
     const btn = event.currentTarget;
