@@ -249,19 +249,19 @@
   /* Products grid */
   #products { background: var(--ww-black); padding: 0; }
   .products-grid {
-    max-width: 1100px; margin: 0 auto; padding: 4rem 2rem;
-    display: flex; flex-direction: column;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+    background: var(--ww-black);
   }
+  @media(max-width:768px){ .products-grid { grid-template-columns: 1fr; } }
   .product-card {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem;
-    align-items: start; padding: 4rem 0;
-    border-bottom: 1px solid var(--ww-dim);
-    background: var(--ww-black); position: relative;
+    display: flex; flex-direction: column; gap: 0.85rem;
+    padding: 2rem; background: #111;
+    border-right: 1px solid var(--ww-dim);
+    position: relative;
   }
-  .product-card:last-child { border-bottom: none; }
-  @media(max-width:768px){ .product-card { grid-template-columns: 1fr; gap: 2rem; padding: 2.5rem 0; } }
-  .product-gallery-col { display: flex; flex-direction: column; gap: 0.75rem; }
-  .product-info-col { display: flex; flex-direction: column; gap: 0.85rem; }
+  .product-card:last-child { border-right: none; }
+  .product-gallery-col { display: flex; flex-direction: column; gap: 0.5rem; }
+  .product-info-col { display: flex; flex-direction: column; gap: 0.75rem; }
   .urgency-badge {
     position: absolute; top: 1rem; right: 1rem;
     background: var(--ww-white); color: var(--ww-black);
