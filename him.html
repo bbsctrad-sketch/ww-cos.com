@@ -246,32 +246,19 @@
   /* Products grid */
   #products { background: var(--ww-black); padding: 0; }
   .products-grid {
-    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px;
-    min-height: 80vh;
+    max-width: 1100px; margin: 0 auto; padding: 4rem 2rem;
+    display: flex; flex-direction: column;
   }
-  @media (max-width: 900px) { .products-grid { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 600px) { .products-grid { grid-template-columns: 1fr; } }
-
-  /* Brand intro column */
-  .brand-col {
-    background-color: var(--ww-black);
-    background-image:
-      linear-gradient(to bottom, rgba(13,13,13,0.78) 0%, rgba(13,13,13,0.88) 100%),
-      url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80');
-    background-size: cover;
-    background-position: center top;
-    padding: 3rem 2rem;
-    display: flex; flex-direction: column; justify-content: space-between;
-    border-right: 1px solid var(--ww-dim);
-  }
-  @media (max-width: 900px) { .brand-col { grid-column: 1 / -1; border-right: none; border-bottom: 1px solid var(--ww-dim); padding: 2.5rem 2rem; } }
   .product-card {
-    background: #111;
-    padding: 1.25rem;
-    display: flex; flex-direction: column; gap: 0.85rem;
-    position: relative;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem;
+    align-items: start; padding: 4rem 0;
+    border-bottom: 1px solid var(--ww-dim);
+    background: var(--ww-black); position: relative;
   }
-  .product-card:first-child { background: #0D0D0D; }
+  .product-card:last-child { border-bottom: none; }
+  @media(max-width:768px){ .product-card { grid-template-columns: 1fr; gap: 2rem; padding: 2.5rem 0; } }
+  .product-gallery-col { display: flex; flex-direction: column; gap: 0.75rem; }
+  .product-info-col { display: flex; flex-direction: column; gap: 0.85rem; }
   .urgency-badge {
     position: absolute; top: 1rem; right: 1rem;
     background: var(--ww-white); color: var(--ww-black);
@@ -286,7 +273,7 @@
   .trust-item { font-size: 0.78rem; opacity: 0.5; letter-spacing: 0.03em; }
   .product-img {
     background-color: #0D0D0D;
-    aspect-ratio: 4/3;
+    aspect-ratio: 4/5;
     overflow: hidden;
     position: relative;
   }
@@ -302,10 +289,10 @@
     background: #0D0D0D; padding: 0.35rem;
   }
   .gallery-thumb {
-    width: 40px; height: 40px;
+    width: 70px; height: 70px;
     object-fit: cover;
     cursor: pointer;
-    border: 1px solid transparent;
+    border: 2px solid transparent;
     opacity: 0.45;
     transition: opacity 0.2s, border-color 0.2s;
     mix-blend-mode: screen;
@@ -474,149 +461,163 @@
   <a href="#products" class="nav-boutique">Commander →</a>
 </nav>
 
+<!-- Hero -->
+<section class="hero" style="display:grid; grid-template-columns:1fr 1fr; min-height:90vh;">
+  <div style="padding:5rem 3.5rem; display:flex; flex-direction:column; justify-content:center; gap:1.5rem;">
+    <div class="hero-label">Pour Lui · Cire coiffante</div>
+    <div class="element-badge" title="Tungstène — W — Pureté 99.1%">
+      <span class="el-num">74</span>
+      <span class="el-sym">W</span>
+      <span class="el-name">Tungsten</span>
+    </div>
+    <h1>Conçu<br/>pour<br/><em style="font-style:normal; color:#D4A843;">l’homme.</em></h1>
+    <p style="font-family:'Karla',sans-serif; opacity:0.65; font-size:0.9rem; line-height:1.8; max-width:420px;">Sélectionnée par l’équipe WW après plus de 15 ans passés derrière le fauteuil de barbier — efficacité terrain, exigence sans compromis. À base d’eau, elle s’élimine facilement et s’adapte à tous les styles.</p>
+    <a href="#products" class="btn-ww" style="max-width:300px; text-decoration:none; margin-top:1rem;">Découvrir les produits →</a>
+  </div>
+  <div class="hero-img"></div>
+</section>
+
+<!-- Marquee -->
+<div class="marquee" style="background:#111; color:var(--ww-white); border:none; border-top:1px solid var(--ww-dim);">
+  <div class="marquee-track">
+    <span>Base aqueuse</span><span>·</span>
+    <span>200+ barbiers</span><span>·</span>
+    <span>Tenue extra-forte</span><span>·</span>
+    <span>Finition mate ou brillante</span><span>·</span>
+    <span>Style années 50</span><span>·</span>
+    <span>113 g — Stock Genève</span><span>·</span>
+    <span>Base aqueuse</span><span>·</span>
+    <span>200+ barbiers</span><span>·</span>
+    <span>Tenue extra-forte</span><span>·</span>
+    <span>Finition mate ou brillante</span><span>·</span>
+  </div>
+</div>
+
 <!-- Products -->
 <section id="products">
   <div class="products-grid">
 
-    <!-- Brand intro -->
-    <div class="brand-col">
-      <div>
-        <div class="hero-label">Pour Lui · Cire coiffante</div>
-        <img src="https://manandshaving.nl/cdn/shop/collections/shiner-gold-125340.png?v=1712931552"
-          alt="Shiner Gold"
-          style="width:120px; object-fit:contain; mix-blend-mode:multiply; background:#f0f0ee; padding:0.5rem; margin-bottom:1.5rem; display:block;" />
-        <div class="element-badge" title="Tungstène — W — Pureté 99.1%" style="margin-bottom:2rem;">
-          <span class="el-num">74</span>
-          <span class="el-sym">W</span>
-          <span class="el-name">Tungsten</span>
-        </div>
-        <h1 style="font-family:'Karla',sans-serif; font-weight:800; font-size:clamp(2.2rem,4vw,4rem); line-height:0.95; letter-spacing:-0.03em; text-transform:uppercase; margin:0 0 1.5rem;">
-          Conçu<br/>pour<br/><em style="font-style:normal; color:#D4A843;">l’homme.</em>
-        </h1>
-        <p style="font-family:'Karla',sans-serif; font-size:0.6rem; font-weight:700; letter-spacing:0.35em; text-transform:uppercase; color:var(--ww-steel); margin:1.5rem 0 0.75rem;">Shiner Gold — La Cire Signature</p>
-        <p style="font-family:'Karla',sans-serif; opacity:0.65; font-size:0.88rem; line-height:1.8; margin:0 0 0.9rem;">Sélectionnée par l’équipe Walter White après plus de 15 ans passés derrière le fauteuil de barbier, Shiner Gold est bien plus qu’une cire : c’est le résultat d’une expertise terrain et d’une exigence sans compromis.</p>
-        <p style="font-family:'Karla',sans-serif; opacity:0.65; font-size:0.88rem; line-height:1.8; margin:0 0 0.9rem;">À base d’eau, elle s’élimine facilement sans alourdir ni étouffer le cheveu — votre cuir chevelu respire, votre coiffure tient.</p>
-        <p style="font-family:'Karla',sans-serif; opacity:0.65; font-size:0.88rem; line-height:1.8; margin:0 0 0.9rem;">Sur <strong>cheveux humides</strong>, elle libère un effet souple et ondulé, naturel et vivant. Sur <strong>cheveux secs</strong>, elle sculpte une coupe d’une précision absolue — structurée, brillante, maîtrisée.</p>
-        <p style="font-family:'Karla',sans-serif; opacity:0.4; font-size:0.8rem; line-height:1.75; margin:0; border-left:2px solid var(--ww-dim); padding-left:0.75rem;">Le style des gentlemen des années 50, revisité pour l’homme d’aujourd’hui — <em>effet wet &amp; brillant</em> pour la Heavy Classic, <em>naturel &amp; mat</em> pour la Pomade Clay.</p>
-      </div>
-      <div style="margin-top:2rem; font-family:'Karla',sans-serif; font-size:0.65rem; letter-spacing:0.3em; text-transform:uppercase; opacity:0.3; border-top:1px solid var(--ww-dim); padding-top:1.5rem;">
-        WW COSMÉTIQUES · PETITES SÉRIES · SUISSE
-      </div>
-    </div>
-
     <!-- Carte 1 -->
     <div class="product-card">
-      <div class="product-img">
-        <img id="galleryMain1" class="gallery-main"
-          src="assets/clay-main.png"
-          alt="Shiner Gold Pomade Clay" />
-      </div>
-      <div class="gallery-thumbs">
-        <img class="gallery-thumb active"
-          src="assets/clay-main.png"
-          alt="Vue 1" onclick="switchImg(this,1)" />
-        <img class="gallery-thumb"
-          src="https://www.hairpomades.com/web/image/product.image/1386/image_1024/Shiner%20Gold%20Clay%20Pomade?unique=904b61c"
-          alt="Vue 2" onclick="switchImg(this,1)" />
-        <img class="gallery-thumb"
-          src="https://shinergold.com/wp-content/uploads/2018/11/E5F6C009-E125-41F7-A759-0B46FBA79C73.jpeg"
-          alt="Vue 3" onclick="switchImg(this,1)" />
-      </div>
-      <span class="urgency-badge">⚡ Stock limité</span>
-      <p class="product-label">Clay · 113 g</p>
-      <h2 class="product-name">Shiner Gold<br/>Pomade Clay</h2>
-      <div class="stars">★★★★★ <span style="opacity:0.45; font-size:0.8rem;">4.9 · 200+ barbiers</span></div>
-      <p class="product-desc">Tenue forte, finition mate. Base aqueuse — sculpt sans résidu.</p>
-      <div class="offer-options" id="offers1">
-        <div class="offer-opt selected" onclick="selectOffer(1,0)">
-          <div class="opt-left">
-            <div class="opt-dot"></div>
-            <span class="opt-label">1 cire<span class="opt-sub">· unité</span></span>
-          </div>
-          <span class="opt-price">28 CHF</span>
+      <div class="product-gallery-col">
+        <div class="product-img">
+          <img id="galleryMain1" class="gallery-main"
+            src="assets/clay-main.png"
+            alt="Shiner Gold Pomade Clay" />
         </div>
-        <div class="offer-opt" onclick="selectOffer(1,1)">
-          <div class="opt-left">
-            <div class="opt-dot"></div>
-            <span class="opt-label">Pack 3 cires<span class="opt-sub">· 20 CHF/pièce</span></span>
-            <span class="opt-badge">-8 CHF</span>
-          </div>
-          <span class="opt-price">60 CHF</span>
-        </div>
-        <div class="offer-opt" onclick="selectOffer(1,2)">
-          <div class="opt-left">
-            <div class="opt-dot"></div>
-            <span class="opt-label">Volume Pro — 6 cires<span class="opt-sub">· tarif professionnel</span></span>
-            <span class="opt-badge">Pro</span>
-          </div>
-          <span class="opt-price" style="opacity:0.45; font-size:0.8rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;">Sur devis</span>
+        <div class="gallery-thumbs">
+          <img class="gallery-thumb active"
+            src="assets/clay-main.png"
+            alt="Vue 1" onclick="switchImg(this,1)" />
+          <img class="gallery-thumb"
+            src="https://www.hairpomades.com/web/image/product.image/1386/image_1024/Shiner%20Gold%20Clay%20Pomade?unique=904b61c"
+            alt="Vue 2" onclick="switchImg(this,1)" />
+          <img class="gallery-thumb"
+            src="https://shinergold.com/wp-content/uploads/2018/11/E5F6C009-E125-41F7-A759-0B46FBA79C73.jpeg"
+            alt="Vue 3" onclick="switchImg(this,1)" />
         </div>
       </div>
-      <div class="pay-row" id="payRow1">
-        <button class="pay-btn pay-btn-card" onclick="payByCard(1,'Shiner Gold Pomade Clay')"><span id="labelCard1">Payer par carte</span></button>
-      </div>
-      <div class="trust-row">
-        <span class="trust-item">✓ Livraison 2–3 j</span>
-        <span class="trust-item">✓ Stock à Genève</span>
-        <span class="trust-item">✓ Paiement sécurisé</span>
+      <div class="product-info-col">
+        <span class="urgency-badge" style="position:static; display:inline-block; margin-bottom:0.5rem;">⚡ Stock limité</span>
+        <p class="product-label">Clay · 113 g</p>
+        <h2 class="product-name">Shiner Gold<br/>Pomade Clay</h2>
+        <div class="stars">★★★★★ <span style="opacity:0.45; font-size:0.8rem;">4.9 · 200+ barbiers</span></div>
+        <p class="product-desc">Tenue forte, finition mate. Base aqueuse — sculpt sans résidu.</p>
+        <div class="offer-options" id="offers1">
+          <div class="offer-opt selected" onclick="selectOffer(1,0)">
+            <div class="opt-left">
+              <div class="opt-dot"></div>
+              <span class="opt-label">1 cire<span class="opt-sub">· unité</span></span>
+            </div>
+            <span class="opt-price">28 CHF</span>
+          </div>
+          <div class="offer-opt" onclick="selectOffer(1,1)">
+            <div class="opt-left">
+              <div class="opt-dot"></div>
+              <span class="opt-label">Pack 3 cires<span class="opt-sub">· 20 CHF/pièce</span></span>
+              <span class="opt-badge">-8 CHF</span>
+            </div>
+            <span class="opt-price">60 CHF</span>
+          </div>
+          <div class="offer-opt" onclick="selectOffer(1,2)">
+            <div class="opt-left">
+              <div class="opt-dot"></div>
+              <span class="opt-label">Volume Pro — 6 cires<span class="opt-sub">· tarif professionnel</span></span>
+              <span class="opt-badge">Pro</span>
+            </div>
+            <span class="opt-price" style="opacity:0.45; font-size:0.8rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;">Sur devis</span>
+          </div>
+        </div>
+        <div class="pay-row" id="payRow1">
+          <button class="pay-btn pay-btn-card" onclick="payByCard(1,'Shiner Gold Pomade Clay')"><span id="labelCard1">Payer par carte</span></button>
+        </div>
+        <div class="trust-row">
+          <span class="trust-item">✓ Livraison 2–3 j</span>
+          <span class="trust-item">✓ Stock à Genève</span>
+          <span class="trust-item">✓ Paiement sécurisé</span>
+        </div>
       </div>
     </div>
 
     <!-- Carte 2 -->
     <div class="product-card">
-      <div class="product-img">
-        <img id="galleryMain2" class="gallery-main"
-          src="https://shinergold.com/wp-content/uploads/2018/11/shiner-gold-pomade-accessories.png"
-          alt="Shiner Gold Heavy Classic" />
-      </div>
-      <div class="gallery-thumbs">
-        <img class="gallery-thumb active"
-          src="https://shinergold.com/wp-content/uploads/2018/11/shiner-gold-pomade-accessories.png"
-          alt="Vue 1" onclick="switchImg(this,2)" />
-        <img class="gallery-thumb"
-          src="https://www.hairpomades.com/web/image/product.image/519/image_1024/Shiner%20Gold%20Heavy%20Hold%20Pomade?unique=c943122"
-          alt="Vue 2" onclick="switchImg(this,2)" />
-        <img class="gallery-thumb"
-          src="https://shinergold.com/wp-content/uploads/2018/11/shiner-gold-heavy-hold-classic-pomade-600x600.jpg"
-          alt="Vue 3" onclick="switchImg(this,2)" />
-      </div>
-      <span class="urgency-badge" style="background:#F5F5F3;">Le classique</span>
-      <p class="product-label">Classic · 113 g</p>
-      <h2 class="product-name">Shiner Gold<br/>Heavy Classic</h2>
-      <div class="stars">★★★★★ <span style="opacity:0.45; font-size:0.8rem;">5.0 · La référence</span></div>
-      <p class="product-desc">Tenue extra-forte, brillance haute. La référence des barbiers.</p>
-      <div class="offer-options" id="offers2">
-        <div class="offer-opt selected" onclick="selectOffer(2,0)">
-          <div class="opt-left">
-            <div class="opt-dot"></div>
-            <span class="opt-label">1 cire<span class="opt-sub">· unité</span></span>
-          </div>
-          <span class="opt-price">22 CHF</span>
+      <div class="product-gallery-col">
+        <div class="product-img">
+          <img id="galleryMain2" class="gallery-main"
+            src="https://shinergold.com/wp-content/uploads/2018/11/shiner-gold-pomade-accessories.png"
+            alt="Shiner Gold Heavy Classic" />
         </div>
-        <div class="offer-opt" onclick="selectOffer(2,1)">
-          <div class="opt-left">
-            <div class="opt-dot"></div>
-            <span class="opt-label">Pack 3 cires<span class="opt-sub">· 18 CHF/pièce</span></span>
-            <span class="opt-badge">-12 CHF</span>
-          </div>
-          <span class="opt-price">54 CHF</span>
-        </div>
-        <div class="offer-opt" onclick="selectOffer(2,2)">
-          <div class="opt-left">
-            <div class="opt-dot"></div>
-            <span class="opt-label">Volume Pro — 6 cires<span class="opt-sub">· tarif professionnel</span></span>
-            <span class="opt-badge">Pro</span>
-          </div>
-          <span class="opt-price" style="opacity:0.45; font-size:0.8rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;">Sur devis</span>
+        <div class="gallery-thumbs">
+          <img class="gallery-thumb active"
+            src="https://shinergold.com/wp-content/uploads/2018/11/shiner-gold-pomade-accessories.png"
+            alt="Vue 1" onclick="switchImg(this,2)" />
+          <img class="gallery-thumb"
+            src="https://www.hairpomades.com/web/image/product.image/519/image_1024/Shiner%20Gold%20Heavy%20Hold%20Pomade?unique=c943122"
+            alt="Vue 2" onclick="switchImg(this,2)" />
+          <img class="gallery-thumb"
+            src="https://shinergold.com/wp-content/uploads/2018/11/shiner-gold-heavy-hold-classic-pomade-600x600.jpg"
+            alt="Vue 3" onclick="switchImg(this,2)" />
         </div>
       </div>
-      <div class="pay-row" id="payRow2">
-        <button class="pay-btn pay-btn-card" onclick="payByCard(2,'Shiner Gold Heavy Classic')"><span id="labelCard2">Payer par carte</span></button>
-      </div>
-      <div class="trust-row">
-        <span class="trust-item">✓ Livraison 2–3 j</span>
-        <span class="trust-item">✓ Stock à Genève</span>
-        <span class="trust-item">✓ Paiement sécurisé</span>
+      <div class="product-info-col">
+        <span class="urgency-badge" style="position:static; display:inline-block; margin-bottom:0.5rem; background:#F5F5F3;">Le classique</span>
+        <p class="product-label">Classic · 113 g</p>
+        <h2 class="product-name">Shiner Gold<br/>Heavy Classic</h2>
+        <div class="stars">★★★★★ <span style="opacity:0.45; font-size:0.8rem;">5.0 · La référence</span></div>
+        <p class="product-desc">Tenue extra-forte, brillance haute. La référence des barbiers.</p>
+        <div class="offer-options" id="offers2">
+          <div class="offer-opt selected" onclick="selectOffer(2,0)">
+            <div class="opt-left">
+              <div class="opt-dot"></div>
+              <span class="opt-label">1 cire<span class="opt-sub">· unité</span></span>
+            </div>
+            <span class="opt-price">22 CHF</span>
+          </div>
+          <div class="offer-opt" onclick="selectOffer(2,1)">
+            <div class="opt-left">
+              <div class="opt-dot"></div>
+              <span class="opt-label">Pack 3 cires<span class="opt-sub">· 18 CHF/pièce</span></span>
+              <span class="opt-badge">-12 CHF</span>
+            </div>
+            <span class="opt-price">54 CHF</span>
+          </div>
+          <div class="offer-opt" onclick="selectOffer(2,2)">
+            <div class="opt-left">
+              <div class="opt-dot"></div>
+              <span class="opt-label">Volume Pro — 6 cires<span class="opt-sub">· tarif professionnel</span></span>
+              <span class="opt-badge">Pro</span>
+            </div>
+            <span class="opt-price" style="opacity:0.45; font-size:0.8rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;">Sur devis</span>
+          </div>
+        </div>
+        <div class="pay-row" id="payRow2">
+          <button class="pay-btn pay-btn-card" onclick="payByCard(2,'Shiner Gold Heavy Classic')"><span id="labelCard2">Payer par carte</span></button>
+        </div>
+        <div class="trust-row">
+          <span class="trust-item">✓ Livraison 2–3 j</span>
+          <span class="trust-item">✓ Stock à Genève</span>
+          <span class="trust-item">✓ Paiement sécurisé</span>
+        </div>
       </div>
     </div>
 
