@@ -276,7 +276,7 @@
   .trust-item { font-size: 0.78rem; opacity: 0.5; letter-spacing: 0.03em; }
   .product-img {
     background-color: #0D0D0D;
-    aspect-ratio: 4/5;
+    aspect-ratio: 1/1;
     overflow: hidden;
     position: relative;
   }
@@ -292,7 +292,7 @@
     background: #0D0D0D; padding: 0.35rem;
   }
   .gallery-thumb {
-    width: 70px; height: 70px;
+    width: 48px; height: 48px;
     object-fit: cover;
     cursor: pointer;
     border: 2px solid transparent;
@@ -309,11 +309,11 @@
   }
   .product-name {
     font-weight: 800;
-    font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+    font-size: clamp(1.1rem, 1.8vw, 1.5rem);
     letter-spacing: -0.02em; text-transform: uppercase;
     margin: 0; line-height: 1.1;
   }
-  .product-desc { opacity: 0.65; line-height: 1.75; font-size: 1rem; margin: 0; }
+  .product-desc { opacity: 0.65; line-height: 1.6; font-size: 0.85rem; margin: 0; }
   .price-ww {
     font-weight: 800;
     font-size: 2rem;
@@ -326,11 +326,11 @@
   .offer-options { display: flex; flex-direction: column; gap: 0.5rem; }
   .offer-opt {
     display: flex; align-items: center; justify-content: space-between;
-    padding: 0.85rem 1rem;
+    padding: 0.55rem 0.75rem;
     border: 1px solid var(--ww-dim);
     cursor: pointer; transition: border-color 0.15s, background 0.15s;
     font-family: 'Karla', sans-serif;
-    gap: 1rem;
+    gap: 0.75rem;
   }
   .offer-opt:hover { border-color: var(--ww-steel); }
   .offer-opt.selected { border-color: var(--ww-white); background: rgba(245,245,243,0.07); }
@@ -341,9 +341,9 @@
     transition: background 0.15s, border-color 0.15s;
   }
   .offer-opt.selected .opt-dot { background: var(--ww-white); border-color: var(--ww-white); }
-  .offer-opt .opt-label { font-size: 0.9rem; font-weight: 700; }
-  .offer-opt .opt-sub { font-size: 0.7rem; opacity: 0.45; font-weight: 400; margin-left: 0.25rem; }
-  .offer-opt .opt-price { font-size: 1rem; font-weight: 800; white-space: nowrap; }
+  .offer-opt .opt-label { font-size: 0.78rem; font-weight: 700; }
+  .offer-opt .opt-sub { font-size: 0.65rem; opacity: 0.45; font-weight: 400; margin-left: 0.2rem; }
+  .offer-opt .opt-price { font-size: 0.88rem; font-weight: 800; white-space: nowrap; }
   .offer-opt .opt-badge {
     font-size: 0.55rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase;
     background: var(--ww-white); color: var(--ww-black); padding: 0.15rem 0.5rem; margin-left: 0.5rem;
