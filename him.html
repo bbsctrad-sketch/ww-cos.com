@@ -451,6 +451,44 @@
   /* Section label override */
   .section-label { font-family: 'Karla', sans-serif; font-weight: 700; }
 
+  /* Him hero layout */
+  .him-hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 90vh; }
+  .him-hero-content { padding: 5rem 3.5rem; display: flex; flex-direction: column; justify-content: center; gap: 1.5rem; }
+
+  /* ── Mobile ────────────────────────────────── */
+  @media (max-width: 768px) {
+    /* Nav */
+    .nav { padding: 0.75rem 1.25rem; }
+    .nav-links { gap: 0.75rem; font-size: 0.65rem; }
+    .nav-boutique { display: none; }
+
+    /* Hero */
+    .him-hero { grid-template-columns: 1fr; min-height: auto; }
+    .him-hero-content { padding: 2.5rem 1.25rem; }
+    .hero-img { display: none; }
+    .hero h1 { font-size: clamp(2.8rem, 12vw, 4.5rem); }
+    .btn-ww { max-width: 100% !important; }
+    .element-badge { margin-bottom: 1.25rem; }
+    .hero-label { margin-bottom: 1.25rem; }
+
+    /* Products */
+    .products-grid { grid-template-columns: 1fr !important; padding: 1.5rem 1rem; gap: 1.25rem; }
+    .product-card { padding: 1.25rem; gap: 0.65rem; }
+    .gallery-thumb { width: 40px; height: 40px; }
+
+    /* Sticky bar */
+    .sticky-bar { flex-direction: column; align-items: stretch; padding: 0.75rem 1rem; gap: 0.5rem; }
+    .sticky-bar-products { gap: 0.75rem; justify-content: center; }
+    .btn-ww-dark { width: 100%; justify-content: center; }
+
+    /* Pay button */
+    .pay-btn { font-size: 0.65rem; padding: 0.75rem 1rem; }
+
+    /* Form modal */
+    .form-row { grid-template-columns: 1fr !important; }
+    .modal-box { padding: 1.5rem 1.25rem; }
+  }
+
   /* Order Modal */
   .order-modal {
     display: none; position: fixed; inset: 0; z-index: 300;
@@ -507,8 +545,8 @@
 </nav>
 
 <!-- Hero -->
-<section class="hero" style="display:grid; grid-template-columns:1fr 1fr; min-height:90vh;">
-  <div style="padding:5rem 3.5rem; display:flex; flex-direction:column; justify-content:center; gap:1.5rem;">
+<section class="hero him-hero">
+  <div class="him-hero-content">
     <div class="hero-label">Pour Lui · Cire coiffante</div>
     <div class="element-badge" title="Tungstène — W — Pureté 99.1%">
       <span class="el-num">74</span>
