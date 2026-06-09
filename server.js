@@ -2,6 +2,40 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const Stripe = require('stripe');
+const nodemailer = require('nodemailer');
+
+const mailer = nodemailer.createTransport({
+  host: process.env.SMTP_HOST,
+  port: parseInt(process.env.SMTP_PORT || '587'),
+  secure: process.env.SMTP_SECURE === 'true',
+  auth: {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS,
+  },
+});
+
+async function sendOrderNotification(customer, orderName, orderPrice) {
+  if (!process.env.SMTP_HOST) return;
+  const adresse = customer
+    ? `${customer.adresse || ''}, ${customer.npa || ''} ${customer.ville || ''}, ${customer.pays || ''}`
+    : 'Non renseignée';
+  await mailer.sendMail({
+    from: `"WW Cosmétiques" <${process.env.SMTP_USER}>`,
+    to: 'ceo@ww-cos.com',
+    subject: `🛒 Nouvelle commande — ${orderName}`,
+    html: `
+      <h2 style="font-family:sans-serif;">Nouvelle commande reçue</h2>
+      <table style="font-family:sans-serif; font-size:14px; border-collapse:collapse;">
+        <tr><td style="padding:6px 16px 6px 0; color:#888;">Produit</td><td><strong>${orderName}</strong></td></tr>
+        <tr><td style="padding:6px 16px 6px 0; color:#888;">Montant</td><td><strong>CHF ${orderPrice}</strong></td></tr>
+        <tr><td style="padding:6px 16px 6px 0; color:#888;">Nom</td><td>${(customer?.prenom || '') + ' ' + (customer?.nom || '')}</td></tr>
+        <tr><td style="padding:6px 16px 6px 0; color:#888;">Email</td><td>${customer?.email || '—'}</td></tr>
+        <tr><td style="padding:6px 16px 6px 0; color:#888;">Téléphone</td><td>${customer?.phone || '—'}</td></tr>
+        <tr><td style="padding:6px 16px 6px 0; color:#888;">Adresse</td><td>${adresse}</td></tr>
+      </table>
+    `,
+  });
+}
 
 const app = express();
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
@@ -53,6 +87,10 @@ app.post('/api/checkout', async (req, res) => {
     }
 
     const session = await stripe.checkout.sessions.create(sessionParams);
+
+    sendOrderNotification(customer, name, price).catch(e =>
+      console.error('Email error:', e.message)
+    );
 
     res.json({ url: session.url });
   } catch (err) {
