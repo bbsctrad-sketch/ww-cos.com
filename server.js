@@ -47,6 +47,11 @@ app.use(express.static('.'));
 const PORT = process.env.PORT || 3002;
 const SITE_URL = process.env.SITE_URL || `http://localhost:${PORT}`;
 
+// ── Status ────────────────────────────────────────────────────────────────────
+app.get('/api/status', (req, res) => {
+  res.json({ checkoutEnabled: process.env.CHECKOUT_ENABLED !== 'false' });
+});
+
 // ── Stripe Checkout (carte) ──────────────────────────────────────────────────
 app.post('/api/checkout', async (req, res) => {
   if (process.env.CHECKOUT_ENABLED === 'false') {

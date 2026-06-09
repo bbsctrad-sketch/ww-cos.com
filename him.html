@@ -884,6 +884,25 @@
     payByCard('bundle', 'Pack WW Clay + Heavy Classic');
   }
 
+  fetch(`${API_BASE}/api/status`).then(r => r.json()).then(({ checkoutEnabled }) => {
+    if (!checkoutEnabled) {
+      document.querySelectorAll('.pay-btn, .btn-ww-dark, .btn-ww').forEach(btn => {
+        btn.disabled = true;
+        btn.style.opacity = '0.35';
+        btn.style.cursor = 'not-allowed';
+        btn.onclick = e => { e.preventDefault(); e.stopPropagation(); };
+      });
+      document.querySelectorAll('[onclick]').forEach(el => {
+        if (/payByCard|addBundle/.test(el.getAttribute('onclick'))) {
+          el.setAttribute('onclick', '');
+          el.style.opacity = '0.35';
+          el.style.cursor = 'not-allowed';
+          el.title = 'Paiement temporairement suspendu';
+        }
+      });
+    }
+  }).catch(() => {});
+
   const stickyBar = document.getElementById('stickyBar');
   const productsSection = document.getElementById('products');
   const observer = new IntersectionObserver(
