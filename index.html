@@ -29,7 +29,14 @@
   .serif { font-family: 'Playfair Display', serif; }
   .tracking-mega { letter-spacing: 0.35em; }
   .split { display: grid; grid-template-columns: 1fr 1fr; height: 100vh; }
-  @media (max-width: 768px) { .split { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; } }
+  @media (max-width: 768px) {
+    body { overflow: auto; }
+    .split { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; height: 100dvh; }
+    .center-logo { display: none; }
+    .panel-content { padding: 1.5rem; justify-content: flex-end; padding-bottom: 3rem; }
+    .top-bar { padding: 0.85rem 1.25rem; }
+    .footer-bar { display: none; }
+  }
 
   .panel { position: relative; overflow: hidden; cursor: pointer; transition: flex 0.6s ease; }
   .panel-bg {
@@ -148,8 +155,8 @@
     <div class="panel-bg"></div>
     <div class="panel-content">
       <p class="text-xs tracking-mega uppercase text-white/70 mb-4">Pour Lui · Sélection des meilleurs produits</p>
-      <h1 class="serif text-5xl md:text-7xl font-semibold mb-6">Efficacité.<br/>Respect.<br/><em class="text-[color:var(--gold)]">Sélection.</em></h1>
-      <p class="text-sm text-white/70 max-w-xs mb-8">Une sélection de produits réalisée sur 15 ans d'activité en tant que barbier.</p>
+      <h1 class="serif text-3xl md:text-7xl font-semibold mb-4 md:mb-6">Efficacité.<br/>Respect.<br/><em class="text-[color:var(--gold)]">Sélection.</em></h1>
+      <p class="text-xs md:text-sm text-white/70 max-w-xs mb-6 md:mb-8">Une sélection de produits réalisée sur 15 ans d'activité en tant que barbier.</p>
       <span class="cta-pill">Univers Lui <span class="arrow">→</span></span>
     </div>
   </a>
@@ -157,8 +164,8 @@
     <div class="panel-bg"></div>
     <div class="panel-content">
       <p class="text-xs tracking-mega uppercase text-white/70 mb-4">Pour Elle · Cosmétique</p>
-      <h1 class="serif text-5xl md:text-7xl font-semibold mb-6">Audacieuse.<br/>Pure.<br/><em class="text-[color:var(--rose)]">Magnétique.</em></h1>
-      <p class="text-sm text-white/70 max-w-xs mb-8">Des cosmétiques haute performance, formulés comme de la couture.</p>
+      <h1 class="serif text-3xl md:text-7xl font-semibold mb-4 md:mb-6">Audacieuse.<br/>Pure.<br/><em class="text-[color:var(--rose)]">Magnétique.</em></h1>
+      <p class="text-xs md:text-sm text-white/70 max-w-xs mb-6 md:mb-8">Des cosmétiques haute performance, formulés comme de la couture.</p>
       <span class="cta-pill">Univers Elle <span class="arrow">→</span></span>
     </div>
   </a>
