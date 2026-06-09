@@ -49,6 +49,10 @@ const SITE_URL = process.env.SITE_URL || `http://localhost:${PORT}`;
 
 // ── Stripe Checkout (carte) ──────────────────────────────────────────────────
 app.post('/api/checkout', async (req, res) => {
+  if (process.env.CHECKOUT_ENABLED === 'false') {
+    return res.status(503).json({ error: 'Paiement temporairement suspendu. Revenez dans quelques instants.' });
+  }
+
   const { name, price, image, quantity = 1, customer } = req.body;
 
   if (!name || !price) {
