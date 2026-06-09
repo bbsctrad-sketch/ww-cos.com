@@ -399,19 +399,6 @@
 
   let herSelected = { price: 24, name: 'Hair Growth & Density Treatment — 45 jours', quantity: 1 };
 
-  fetch(`${API_BASE}/api/status`).then(r => r.json()).then(({ checkoutEnabled }) => {
-    if (!checkoutEnabled) {
-      const btn = document.getElementById('herPayBtn');
-      if (btn) {
-        btn.disabled = true;
-        btn.style.opacity = '0.35';
-        btn.style.cursor = 'not-allowed';
-        btn.onclick = e => e.preventDefault();
-        btn.textContent = 'Paiement temporairement suspendu';
-      }
-    }
-  }).catch(() => {});
-
   function openHerModal() {
     document.getElementById('modalTitle').textContent = herSelected.name + ' — CHF ' + herSelected.price;
     document.getElementById('orderModal').classList.add('open');
